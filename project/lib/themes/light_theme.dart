@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 const primary = Color(0xff303F9F);
 const onPrimary = Color(0xff7986CB);
 const secondary = Color(0xff00796B);
-const onSecondary = Color(0xff26A69A);
+const onSecondary = Color(0xff4DB6AC);
 const background = Color(0xffE8EAF6);
 const onBackground = Color(0xffC5CAE9);
 const text = Colors.black;
@@ -21,13 +21,16 @@ ThemeData lightTheme = ThemeData(
     onBackground: onBackground,
     error: error,
     onSurface: success,
-    surface: Colors.white,
+    surface: Colors.black54,
   ),
   fontFamily: GoogleFonts.aBeeZee().fontFamily,
   textTheme: TextTheme(
     titleMedium: TextStyle(
-      color: Colors.black,
+      color: text,
       fontSize: 18,
-    )
+    ),
+      displayMedium: TextStyle(
+        color: text,
+      ),
   )
 );
