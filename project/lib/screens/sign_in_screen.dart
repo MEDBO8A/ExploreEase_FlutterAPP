@@ -59,27 +59,30 @@ class _MySignInScreenState extends State<MySignInScreen> {
         child: Center(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  themeColors.surface == Colors.white? Image.asset(
-                      "assets/images/dark_logo.png",
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    themeColors.surface == Colors.white? Image.asset(
+                        "assets/images/dark_logo.png",
+                        width: screenWidth * 0.4,
+                    )
+                        : Image.asset(
+                        "assets/images/light_logo.png",
                       width: screenWidth * 0.4,
-                  )
-                      : Image.asset(
-                      "assets/images/light_logo.png",
-                    width: screenWidth * 0.4,
+                      ),
+                    Text(
+                      "Explore \n  Ease",
+                      style: theme.textTheme.displayMedium?.copyWith(
+                        fontFamily: GoogleFonts.bahiana().fontFamily,
+                        fontSize: screenWidth * 0.15,
+                        color: themeColors.primary,
+                        letterSpacing: 2,
+                      ),
                     ),
-                  Text(
-                    "Explore \n  Ease",
-                    style: theme.textTheme.displayMedium?.copyWith(
-                      fontFamily: GoogleFonts.bahiana().fontFamily,
-                      fontSize: screenWidth * 0.15,
-                      color: themeColors.primary,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
         
               addVerticalSpace(screenHeight * 0.03),
