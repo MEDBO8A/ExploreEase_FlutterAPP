@@ -5,6 +5,7 @@ import 'package:project/screens/sign_in_screen.dart';
 
 import '../components/sign in&up components/buttons.dart';
 import '../forums/text_fields.dart';
+import '../services/authServices.dart';
 
 class MySignUpScreen extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
+  AuthServices auth = AuthServices();
 
   String? _emailError;
   String? _passError;
@@ -132,8 +134,11 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
 
                     MainButtonWidget(
                       content: "Sign Up",
-                      onPressed: (){
+                      onPressed: () async{
                         _validateInputs();
+                        if (_emailError == null && _passError == null && _nameError == null){
+                          auth.signUp(context, _nameController.text, _emailController.text, _passController.text);
+                        }
                       },
                     ),
 

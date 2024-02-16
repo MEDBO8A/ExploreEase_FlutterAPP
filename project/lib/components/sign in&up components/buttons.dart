@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:project/services/authServices.dart';
 
 class GoogleButtonWidget extends StatelessWidget{
+  final auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: (){},
+      onTap: () {
+        auth.logInWithGoogle(context);
+      },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
+import 'package:project/screens/password_reset_screen.dart';
 import 'package:project/screens/sign_up_screen.dart';
+import 'package:project/services/authServices.dart';
 
 import '../components/sign in&up components/buttons.dart';
 import '../forums/text_fields.dart';
@@ -16,6 +18,7 @@ class MySignInScreen extends StatefulWidget {
 class _MySignInScreenState extends State<MySignInScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+  AuthServices auth = AuthServices();
 
   String? _emailError;
   String? _passError;
@@ -108,7 +111,9 @@ class _MySignInScreenState extends State<MySignInScreen> {
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ForgotPassPage()));
+                        },
                         child: Text(
                           "Forgot Password ? ",
                           style: theme.textTheme.titleMedium?.copyWith(
@@ -120,8 +125,11 @@ class _MySignInScreenState extends State<MySignInScreen> {
                     addVerticalSpace(screenHeight * 0.03),
                     MainButtonWidget(
                         content: "Sign In",
-                        onPressed: (){
+                        onPressed: () async{
                           _validateInputs();
+                          if (_emailError == null && _passError == null){
+                            auth.signIn(context,_emailController.text, _passController.text);
+                          }
                         },
                     ),
                     addVerticalSpace(screenHeight * 0.02),

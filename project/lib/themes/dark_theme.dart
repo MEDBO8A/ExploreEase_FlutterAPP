@@ -24,7 +24,7 @@ ThemeData darkTheme = ThemeData(
       surface: Colors.white,
     ),
     fontFamily: GoogleFonts.aBeeZee().fontFamily,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
         titleMedium: TextStyle(
           color: text,
           fontSize: 18,
@@ -32,6 +32,12 @@ ThemeData darkTheme = ThemeData(
         displayMedium: TextStyle(
           color: text,
         ),
+      titleLarge: TextStyle(
+        color: text,
+      ),
+      bodyLarge: TextStyle(
+        color: text,
+      ),
     )
 
 );
