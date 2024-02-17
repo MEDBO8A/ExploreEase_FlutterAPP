@@ -4,7 +4,7 @@ import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
 import '../components/sign in&up components/buttons.dart';
-import '../forums/text_fields.dart';
+import '../components/forums/text_fields.dart';
 import '../services/authServices.dart';
 
 class MySignUpScreen extends StatefulWidget {

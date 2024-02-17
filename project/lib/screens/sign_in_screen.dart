@@ -6,7 +6,7 @@ import 'package:project/screens/sign_up_screen.dart';
 import 'package:project/services/authServices.dart';
 
 import '../components/sign in&up components/buttons.dart';
-import '../forums/text_fields.dart';
+import '../components/forums/text_fields.dart';
 
 class MySignInScreen extends StatefulWidget {
   @override

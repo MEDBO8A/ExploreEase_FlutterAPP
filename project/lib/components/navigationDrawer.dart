@@ -27,43 +27,38 @@ class NavigationDrawerBar extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 35,
-                            backgroundImage: user != null
-                                ? NetworkImage(user!.profPic)
-                                : null,
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35,
+                          backgroundImage: user != null
+                              ? NetworkImage(user!.profPic)
+                              : null,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          user!.username,
+                          style: TextStyle(
+                            color: themeColors.surface,
+                            fontSize: 18,
                           ),
-                          SizedBox(
-                            width: 15,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            user!.mail,
+                            style: TextStyle(
+                              color: themeColors.surface,
+                              fontSize: 18,
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                user!.username,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                user!.mail,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                     SizedBox(
                       height: 30,
@@ -79,13 +74,13 @@ class NavigationDrawerBar extends StatelessWidget {
                     ListTile(
                       leading: Icon(
                         Icons.person,
-                        color: Colors.white70,
+                        color: themeColors.surface,
                         size: 20,
                       ),
                       title: Text(
                         "My Account",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: themeColors.surface,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
@@ -101,13 +96,13 @@ class NavigationDrawerBar extends StatelessWidget {
                     ListTile(
                       leading: FaIcon(
                         FontAwesomeIcons.heart,
-                        color: Colors.white70,
+                        color: themeColors.surface,
                         size: 20,
                       ),
                       title: Text(
                         "Favorites",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: themeColors.surface,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
@@ -160,13 +155,13 @@ class NavigationDrawerBar extends StatelessWidget {
               ListTile(
                 leading: Icon(
                   Icons.support_agent,
-                  color: Colors.white70,
+                  color: themeColors.surface,
                   size: 20,
                 ),
                 title: Text(
                   "Customer Support",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: themeColors.surface,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -184,13 +179,13 @@ class NavigationDrawerBar extends StatelessWidget {
               ListTile(
                 leading: FaIcon(
                   FontAwesomeIcons.powerOff,
-                  color: Colors.white70,
+                  color: themeColors.surface,
                   size: 20,
                 ),
                 title: Text(
                   "Log Out",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: themeColors.surface,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -199,10 +194,11 @@ class NavigationDrawerBar extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
+                        backgroundColor: themeColors.background,
                         title: Text(
                           "Log Out",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: themeColors.error,
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                           ),
@@ -210,7 +206,7 @@ class NavigationDrawerBar extends StatelessWidget {
                         content: Text(
                           "Confirme to log out",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: themeColors.surface,
                             fontSize: 18,
                           ),
                         ),
@@ -234,7 +230,7 @@ class NavigationDrawerBar extends StatelessWidget {
                                   child: Text(
                                     "Yes",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: themeColors.surface,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
@@ -251,7 +247,7 @@ class NavigationDrawerBar extends StatelessWidget {
                                   child: Text(
                                     "No",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: themeColors.surface,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),

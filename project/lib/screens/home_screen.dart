@@ -1,7 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screens/profile_screen.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
+import '../components/categories/box_categorie_widget.dart';
+import '../components/categories/list_categories.dart';
+import '../components/countries/list_countries.dart';
+import '../components/forums/text_fields.dart';
 import '../components/navigationDrawer.dart';
 import '../model/user.dart';
 import '../services/authServices.dart';
@@ -28,15 +33,10 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         final userRes = await DBServices().getUser(user.uid);
-
-        if (userRes != null) {
-          setState(() {
-            userdata = userRes;
-            UserModel.current = userRes;
-          });
-        } else {
-          print("User data from DB is null.");
-        }
+        setState(() {
+          userdata = userRes;
+          UserModel.current = userRes;
+        });
       }
     } catch (e) {
       print("Error getting user: $e");
@@ -76,10 +76,10 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                   ),
                 );
               },
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: GestureDetector(
               child: CircleAvatar(
                 radius: 20,
@@ -87,11 +87,11 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 userdata != null ? NetworkImage(userdata!.profPic) : null,
               ),
               onTap: () {
-                /*Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => MyProfilePage(),
+                    builder: (context) => MyProfileScreen(),
                   ),
-                );*/
+                );
               },
             ),
           ),
@@ -99,16 +99,62 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.symmetric(
-          vertical: 40,
-          horizontal: 20,
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 15,
         ),
-        child: Center(
-          child: Column(
-            children: [
-              Text("HElllooo")
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Hello, ${userdata?.username}",
+              style: theme.textTheme.titleLarge,
+            ),
+            Text(
+              "Explore the beauty of the world ",
+              style: theme.textTheme.bodyLarge,
+            ),
+            MySearchTextField(),
+            Text(
+              "Categories",
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2
+              ),
+            ),
+            CategoriesList(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Countries",
+                  style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      show = !show;
+                    });
+                  },
+                  child: Text(
+                    show ? "See Less" : "See All",
+                  ),
+                ),
+              ],
+            ),
+            CountriesList(show: show),
+            Text(
+              "Popular",
+              style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2
+              ),
+            ),
+          ],
         ),
       ),
     );

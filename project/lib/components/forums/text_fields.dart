@@ -187,3 +187,57 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
     );
   }
 }
+
+class MySearchTextField extends StatelessWidget {
+  final String? error;
+
+  const MySearchTextField({
+    Key? key,
+    this.error,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final themeColors = Theme.of(context).colorScheme;
+    return TextFormField(
+      style: TextStyle(
+        letterSpacing: 1,
+        color: themeColors.surface,
+        fontSize: 18,
+      ),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
+        filled: true,
+        fillColor: themeColors.onBackground,
+        errorStyle: TextStyle(
+          color: themeColors.error,
+          fontSize: 15,
+        ),
+        errorText: error,
+        hintText: "Search for a package here",
+        prefixIcon: Icon(Icons.search, color: themeColors.surface),
+        hintStyle: TextStyle(
+          letterSpacing: 1,
+          color: themeColors.surface,
+          fontSize: 18,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            style: BorderStyle.solid,
+            width: 2,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            style: BorderStyle.solid,
+            width: 2,
+          ),
+        ),
+      ),
+    );
+  }
+}

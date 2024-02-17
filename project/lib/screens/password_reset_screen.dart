@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unrelated_type_equality_checks, unnecessary_null_comparison
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../forums/text_fields.dart';
+import '../components/forums/text_fields.dart';
 import '../helping widgets/sizedbox_widget.dart';
 import '../services/alert_dialog.dart';
 
