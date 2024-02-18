@@ -107,7 +107,6 @@ class _PackageBoxState extends State<PackageBox> {
                       if (currentUser!.favorite!.contains(widget.placeID)) {
                         setState(() {
                           currentUser!.favorite!.remove(widget.placeID);
-                          print("a");
                         });
                       } else {
                         setState(() {

@@ -56,7 +56,10 @@ class _PackagesState extends State<MyPackagesList> {
           },
         ),
       ),
-      body: content(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
+        child: content(),
+      ),
     );
   }
 }

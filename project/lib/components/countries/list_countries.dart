@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/components/countries/collections_sizes_generator.dart';
 
 import '../../helping widgets/sizedbox_widget.dart';
 import '../package/list_package.dart';
@@ -30,7 +31,6 @@ class CountriesList extends StatelessWidget {
         children: [
           CountryBox(
             country: "Tunisia",
-            number: 4,
             image: "assets/images/countries/tunisie.png",
             onTap: () {
 
@@ -47,7 +47,6 @@ class CountriesList extends StatelessWidget {
           addHorizentalSpace(10),
           CountryBox(
             country: "Spain",
-            number: 4,
             image: "assets/images/countries/spain.png",
             onTap: () {
 
@@ -64,7 +63,6 @@ class CountriesList extends StatelessWidget {
           addHorizentalSpace(10),
           CountryBox(
             country: "Italy",
-            number: 4,
             image: "assets/images/countries/italy.png",
             onTap: () {
 
@@ -80,7 +78,6 @@ class CountriesList extends StatelessWidget {
           addHorizentalSpace(10),
           CountryBox(
             country: "Greece",
-            number: 4,
             image: "assets/images/countries/greece.png",
             onTap: () {
               Navigator.of(context).push(
@@ -98,7 +95,6 @@ class CountriesList extends StatelessWidget {
               children: [
                 CountryBox(
                   country: "U A E",
-                  number: 4,
                   image: "assets/images/countries/UAE.png",
                   onTap: () {
                     Navigator.of(context).push(
@@ -113,7 +109,6 @@ class CountriesList extends StatelessWidget {
                 addHorizentalSpace(10),
                 CountryBox(
                   country: "Australia",
-                  number: 4,
                   image: "assets/images/countries/australia.png",
                   onTap: () {
                     Navigator.of(context).push(
@@ -128,7 +123,6 @@ class CountriesList extends StatelessWidget {
                 addHorizentalSpace(10),
                 CountryBox(
                   country: "Croatia",
-                  number: 4,
                   image: "assets/images/countries/croatia.png",
                   onTap: () {
 
@@ -145,7 +139,6 @@ class CountriesList extends StatelessWidget {
                 addHorizentalSpace(10),
                 CountryBox(
                   country: "Turkey",
-                  number: 4,
                   image: "assets/images/countries/turkey.png",
                   onTap: () {
 

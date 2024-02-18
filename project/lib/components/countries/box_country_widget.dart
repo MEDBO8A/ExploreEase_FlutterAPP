@@ -1,14 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'collections_sizes_generator.dart';
 class CountryBox extends StatelessWidget {
   final String country;
-  final num number;
   final String image;
   final VoidCallback onTap;
 
-  const CountryBox(
+  CountryBox(
       {super.key,
         required this.country,
-        required this.number,
         required this.image,
         required this.onTap});
 
@@ -41,7 +42,7 @@ class CountryBox extends StatelessWidget {
                     bottom: 12,
                     child: Container(
                       padding: EdgeInsets.all(5),
-                      height: screenHeight * 0.07,
+                      height: screenHeight * 0.08,
                       width: screenWidth * 0.26,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -54,21 +55,14 @@ class CountryBox extends StatelessWidget {
                             country,
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Colors.white,
                             ),
                           ),
                           SizedBox(
                             height: 3,
                           ),
-                          Text(
-                            " $number Packages",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 11,
-                              color: Colors.white,
-                            ),
-                          ),
+                          getSize(),
                         ],
                       ),
                     ),
@@ -80,5 +74,45 @@ class CountryBox extends StatelessWidget {
         ),
       ],
     );
+  }
+  CollectionReference tunisiaCollection =
+  FirebaseFirestore.instance.collection("country_tunisia");
+  CollectionReference spainCollection =
+  FirebaseFirestore.instance.collection("country_spain");
+  CollectionReference italyCollection =
+  FirebaseFirestore.instance.collection("country_italy");
+  CollectionReference greeceCollection =
+  FirebaseFirestore.instance.collection("country_greece");
+  CollectionReference UAECollection =
+  FirebaseFirestore.instance.collection("country_UAE");
+  CollectionReference australiaCollection =
+  FirebaseFirestore.instance.collection("country_australia");
+  CollectionReference croatiaCollection =
+  FirebaseFirestore.instance.collection("country_croatia");
+  CollectionReference turkeyCollection =
+  FirebaseFirestore.instance.collection("country_turkey");
+
+  Widget getSize(){
+    switch (country){
+      case "Tunisia":
+        return CountryWidget(collection: tunisiaCollection,);
+      case "Spain":
+        return CountryWidget(collection: spainCollection,);
+      case "Italy":
+        return CountryWidget(collection: italyCollection,);
+      case "Greece":
+        return CountryWidget(collection: greeceCollection,);
+      case "U A E":
+        return CountryWidget(collection: UAECollection,);
+      case "Australia":
+        return CountryWidget(collection: australiaCollection,);
+      case "Croatia":
+        return CountryWidget(collection: croatiaCollection,);
+      case "Turkey":
+        return CountryWidget(collection: turkeyCollection,);
+      default:
+        break;
+    }
+    return Text("0");
   }
 }

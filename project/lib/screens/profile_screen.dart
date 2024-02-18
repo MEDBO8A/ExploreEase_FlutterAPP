@@ -188,10 +188,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                             fit: BoxFit.cover,
                           ),
-                          border: Border.all(
-                            color: themeColors.surface,
-                            width: 2,
-                          ),
+
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -203,19 +200,15 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             selectAndUploadImage();
                           },
                           icon: Container(
-                            padding: const EdgeInsets.all(3),
+                            padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
-                              color: themeColors.background,
-                              border: Border.all(
-                                color: themeColors.surface,
-                                width: 2,
-                              ),
+                              color: themeColors.onBackground,
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Icon(
                               Icons.camera_alt,
                               color: themeColors.surface,
-                              size: 17,
+                              size: 18,
                             ),
                           ),
                         ),

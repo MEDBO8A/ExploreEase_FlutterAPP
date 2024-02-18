@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/profile_screen.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
 import '../components/categories/box_categorie_widget.dart';
 import '../components/categories/list_categories.dart';
+import '../components/countries/collections_sizes_generator.dart';
 import '../components/countries/list_countries.dart';
 import '../components/forums/text_fields.dart';
 import '../components/navigationDrawer.dart';
+import '../components/popular packages/list_packages.dart';
+import '../components/popular packages/popular_generator.dart';
 import '../model/user.dart';
 import '../services/authServices.dart';
 import '../services/dataBaseServices.dart';
@@ -26,6 +30,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   void initState() {
     super.initState();
     getUser();
+    getPopular();
   }
 
   Future<void> getUser() async {
@@ -107,6 +112,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            addVerticalSpace(10),
             Text(
               "Hello, ${userdata?.username}",
               style: theme.textTheme.titleLarge,
@@ -115,7 +121,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               "Explore the beauty of the world ",
               style: theme.textTheme.bodyLarge,
             ),
+            addVerticalSpace(20),
             MySearchTextField(),
+            addVerticalSpace(30),
             Text(
               "Categories",
               style: theme.textTheme.titleMedium?.copyWith(
@@ -123,7 +131,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 letterSpacing: 2
               ),
             ),
+            addVerticalSpace(15),
             CategoriesList(),
+            addVerticalSpace(30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -146,13 +156,21 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 ),
               ],
             ),
+            addVerticalSpace(10),
             CountriesList(show: show),
+            addVerticalSpace(30),
             Text(
               "Popular",
               style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2
               ),
+            ),
+            addVerticalSpace(10),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.98,
+              height: MediaQuery.of(context).size.height * 0.11,
+              child: PopularPacksList(),
             ),
           ],
         ),

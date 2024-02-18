@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
 import '../model/user.dart';
+import '../screens/favorite_screen.dart';
+import '../screens/profile_screen.dart';
 import '../services/authServices.dart';
 
 class NavigationDrawerBar extends StatelessWidget {
@@ -85,12 +87,11 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontSize: 15),
                       ),
                       onTap: () {
-                        /*Navigator.of(context).push(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyProfilePage(),
+                            builder: (context) => MyProfileScreen(),
                           ),
                         );
-                         */
                       },
                     ),
                     ListTile(
@@ -107,14 +108,12 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontSize: 15),
                       ),
                       onTap: () {
-                        /*
+
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyFavoritePage(),
+                            builder: (context) => MyFavoriteScreen(),
                           ),
                         );
-
-                         */
                       },
                     ),
                     ListTile(
@@ -214,43 +213,39 @@ class NavigationDrawerBar extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                height: 40,
-                                width: 80,
-                                child: FloatingActionButton(
-                                  onPressed: () async {
-                                    await auth.signOut();
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => MySignInScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    "Yes",
-                                    style: TextStyle(
-                                      color: themeColors.surface,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: themeColors.primary,
+                                ),
+                                onPressed: () async{
+                                  await auth.signOut();
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => MySignInScreen(),
                                     ),
+                                  );
+                                },
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: 40,
-                                width: 80,
-                                child: FloatingActionButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    "No",
-                                    style: TextStyle(
-                                      color: themeColors.surface,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: themeColors.onSecondary,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ),

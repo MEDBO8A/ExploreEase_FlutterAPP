@@ -28,15 +28,24 @@ ThemeData darkTheme = ThemeData(
         titleMedium: TextStyle(
           color: text,
           fontSize: 18,
+          letterSpacing: 1,
         ),
         displayMedium: TextStyle(
           color: text,
+          letterSpacing: 1,
         ),
       titleLarge: TextStyle(
         color: text,
+        letterSpacing: 1,
       ),
       bodyLarge: TextStyle(
         color: text,
+        letterSpacing: 1,
+      ),
+      labelMedium: TextStyle(
+        color: text,
+        letterSpacing: 1,
+        fontSize: 15,
       ),
     )
 

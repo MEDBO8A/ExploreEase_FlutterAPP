@@ -1,35 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:explore_ease/components/boxes.dart';
-import 'package:explore_ease/model/user.dart';
-import 'package:explore_ease/pages/home_page.dart';
-import 'package:explore_ease/services/alert_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screens/home_screen.dart';
 
-class MyFavoritePage extends StatefulWidget {
-  const MyFavoritePage({super.key});
+import '../components/package/box_package_widget.dart';
+import '../model/user.dart';
+import '../services/alert_dialog.dart';
+
+class MyFavoriteScreen extends StatefulWidget {
+  const MyFavoriteScreen({super.key});
 
   @override
-  State<MyFavoritePage> createState() => _MyFavoritePageState();
+  State<MyFavoriteScreen> createState() => _MyFavoriteScreenState();
 }
 
-class _MyFavoritePageState extends State<MyFavoritePage> {
-  Color navyBlue = const Color(0xFF000080);
+class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
   UserModel currentUser = UserModel.current!;
   final CollectionReference packagesCollection =
   FirebaseFirestore.instance.collection('packages');
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themeColors = Theme.of(context).colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: themeColors.background,
       appBar: AppBar(
         toolbarHeight: MediaQuery.of(context).size.height * 0.05,
-        iconTheme: const IconThemeData(color: Colors.black87),
-        backgroundColor: Colors.white60,
+        iconTheme: IconThemeData(color: themeColors.onPrimary),
+        backgroundColor: themeColors.background,
         centerTitle: true,
         title: Text(
           "Favorite",
           style: TextStyle(
-            color: navyBlue,
+            color: themeColors.primary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -37,12 +42,7 @@ class _MyFavoritePageState extends State<MyFavoritePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MyHomePage(),
-              ),
-            );
+            Navigator.pop(context);
           },
         ),
       ),
@@ -63,31 +63,34 @@ class _MyFavoritePageState extends State<MyFavoritePage> {
               snapshot.data!.docs;
 
           if (favoritePackages.isNotEmpty) {
-            return ListView.builder(
-              itemCount: favoritePackages.length,
-              itemBuilder: (context, index) {
-                Map<String, dynamic> data =
-                favoritePackages[index].data() as Map<String, dynamic>;
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
+              child: ListView.builder(
+                itemCount: favoritePackages.length,
+                itemBuilder: (context, index) {
+                  Map<String, dynamic> data =
+                  favoritePackages[index].data() as Map<String, dynamic>;
 
-                return PackageBox(
-                  page: 3,
-                  placeID: data["placeID"] ?? "",
-                  name: data["placeName"] ?? "",
-                  city: data["city"] ?? "",
-                  country: data["country"] ?? "",
-                  image: data["imageUrl"] ?? "",
-                  rate: data["rate"] ?? 0,
-                  rateNB: data["rateNB"] ?? 0,
-                  price: data["price"] ?? 0,
-                  onFavoriteChanged: () {
-                    setState(() {});
-                  },
-                );
-              },
+                  return PackageBox(
+                    page: 3,
+                    placeID: data["placeID"] ?? "",
+                    name: data["placeName"] ?? "",
+                    city: data["city"] ?? "",
+                    country: data["country"] ?? "",
+                    image: data["imageUrl"] ?? "",
+                    rate: data["rate"] ?? 0,
+                    rateNB: data["rateNB"] ?? 0,
+                    price: data["price"] ?? 0,
+                    onFavoriteChanged: () {
+                      setState(() {});
+                    },
+                  );
+                },
+              ),
             );
           } else {
-            return const Center(
-              child: Text("You don't have a favorite package"),
+            return Center(
+              child: Text("You don't have a favorite package",style: theme.textTheme.titleMedium,),
             );
           }
         },
