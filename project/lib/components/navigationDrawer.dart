@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
 import '../model/user.dart';
+import '../screens/community_chat_screen.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/profile_screen.dart';
 import '../services/authServices.dart';
@@ -130,14 +131,12 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontSize: 15),
                       ),
                       onTap: () {
-                        /*
+
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyCommunityPage(),
+                            builder: (context) => CommunityChatScreen(),
                           ),
                         );
-
-                         */
                       },
                     ),
                   ],
