@@ -33,6 +33,169 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
     super.initState();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themeColors = Theme.of(context).colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: screenHeight * 0.05,
+        iconTheme: IconThemeData(color: themeColors.onPrimary),
+        backgroundColor: themeColors.background,
+        centerTitle: true,
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: themeColors.primary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomeScreen(),
+              ),
+            );
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          color: themeColors.background,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              addVerticalSpace(screenHeight * 0.03),
+              Stack(
+                children: [
+                  Container(
+                    height: 110,
+                    width: 110,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          user!.profPic,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -10,
+                    right: -5,
+                    child: IconButton(
+                      onPressed: () {
+                        selectAndUploadImage();
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: themeColors.onBackground,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: themeColors.surface,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              addVerticalSpace(screenHeight * 0.02),
+              Padding(
+                padding: EdgeInsets.only(left: screenWidth * 0.05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      user!.username,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                        color: themeColors.surface,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          showEditField(context, "username");
+                        },
+                        icon: Icon(
+                          Icons.create_outlined,
+                          size: 15,
+                          color: themeColors.surface,
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: screenWidth * 0.05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      user!.bio,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: themeColors.surface,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          showEditField(context, "bio");
+                        },
+                        icon: Icon(
+                          Icons.create_outlined,
+                          size: 15,
+                          color: themeColors.surface,
+                        ))
+                  ],
+                ),
+              ),
+              addVerticalSpace(screenHeight * 0.02),
+              Container(
+                width: screenWidth,
+                height: screenHeight * 0.8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+                  color: themeColors.onBackground,
+                ),
+                child: Column(
+                  children: [
+                    addVerticalSpace(screenHeight * 0.01),
+                    Text(
+                      "Booked Packages",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2
+                      ),
+                    ),
+                    addVerticalSpace(screenHeight * 0.01),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<void> selectAndUploadImage() async {
     final imagePicker = ImagePicker();
 
@@ -105,7 +268,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               }
             },
             child: const Text(
-                "Edit",
+              "Edit",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
@@ -120,7 +283,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               Navigator.pop(context);// Cancel button
             },
             child: const Text(
-                "Cancel",
+              "Cancel",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
@@ -131,173 +294,5 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       ),
     );
 
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: screenHeight * 0.05,
-        iconTheme: IconThemeData(color: themeColors.onPrimary),
-        backgroundColor: themeColors.background,
-        centerTitle: true,
-        title: Text(
-          "Profile",
-          style: TextStyle(
-            color: themeColors.primary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MyHomeScreen(),
-              ),
-            );
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              color: themeColors.background,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  addVerticalSpace(screenHeight * 0.03),
-                  Stack(
-                    children: [
-                      Container(
-                        height: screenHeight * 0.13,
-                        width: screenWidth * 0.25,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              user!.profPic,
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: -10,
-                        right: -5,
-                        child: IconButton(
-                          onPressed: () {
-                            selectAndUploadImage();
-                          },
-                          icon: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: themeColors.onBackground,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: themeColors.surface,
-                              size: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  addVerticalSpace(screenHeight * 0.02),
-                  Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.05),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          user!.username,
-                          style: TextStyle(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
-                            color: themeColors.surface,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              showEditField(context, "username");
-                            },
-                            icon: Icon(
-                              Icons.create_outlined,
-                              size: 15,
-                              color: themeColors.surface,
-                            ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.05),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          user!.bio,
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: themeColors.surface,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              showEditField(context, "bio");
-                            },
-                            icon: Icon(
-                              Icons.create_outlined,
-                              size: 15,
-                              color: themeColors.surface,
-                            ))
-                      ],
-                    ),
-                  ),
-                  addVerticalSpace(screenHeight * 0.02),
-                  Container(
-                    width: screenWidth,
-                    height: screenHeight * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0),
-                      ),
-                      color: themeColors.onBackground,
-                    ),
-                    child: Column(
-                      children: [
-                        addVerticalSpace(screenHeight * 0.01),
-                        Text(
-                          "Booked Packages",
-                          style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 2
-                          ),
-                        ),
-                        addVerticalSpace(screenHeight * 0.01),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

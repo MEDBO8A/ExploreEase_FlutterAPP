@@ -48,9 +48,9 @@ class PopularPackageBox extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.only(right: 20, top: 5, bottom: 5),
-        padding: EdgeInsets.only(right: 7),
-        height: screenHeight * 0.1,
+        margin: EdgeInsets.only(right: 15),
+        padding: EdgeInsets.only(right: 10),
+        height: screenHeight * 0.15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: themeColors.onBackground,
@@ -62,67 +62,65 @@ class PopularPackageBox extends StatelessWidget {
               child: Image.network(
                 image,
                 width: screenWidth * 0.25,
-                height: screenHeight * 0.1,
+                height: screenHeight * 0.15,
                 fit: BoxFit.cover,
               ),
             ),
             addHorizentalSpace(5),
-            Padding(
-              padding: EdgeInsets.all(3),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: themeColors.onPrimary,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.star_border_outlined,
-                              size: 17,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        color: themeColors.onPrimary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.star_border_outlined,
+                            size: 17,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            " $rate ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
                               color: Colors.white,
                             ),
-                            Text(
-                              " $rate ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      addHorizentalSpace(10),
-                      Text(
-                        name,
-                        style: theme.textTheme.titleMedium,
+                    ),
+                    addHorizentalSpace(10),
+                    Text(
+                      name,
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+                addVerticalSpace(5),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.place,
+                      size: 20,
+                      color: themeColors.surface,
+                    ),
+                    Text(
+                      "$city, $country",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontSize: 15,
                       ),
-                    ],
-                  ),
-                  addVerticalSpace(5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.place,
-                        size: 20,
-                        color: themeColors.surface,
-                      ),
-                      Text(
-                        "$city, $country",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontSize: 15,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

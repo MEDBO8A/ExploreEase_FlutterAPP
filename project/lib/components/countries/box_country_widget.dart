@@ -42,25 +42,22 @@ class CountryBox extends StatelessWidget {
                     bottom: 12,
                     child: Container(
                       padding: EdgeInsets.all(5),
-                      height: screenHeight * 0.08,
+                      height: screenHeight * 0.082,
                       width: screenWidth * 0.26,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.black26,
                       ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
                             country,
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: 15,
                               color: Colors.white,
                             ),
-                          ),
-                          SizedBox(
-                            height: 3,
                           ),
                           getSize(),
                         ],

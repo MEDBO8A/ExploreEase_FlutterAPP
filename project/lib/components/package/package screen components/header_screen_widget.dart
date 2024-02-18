@@ -96,104 +96,122 @@ class _HeaderScreenState extends State<HeaderScreen> {
             Positioned(
               top: 30,
               right: 20,
-              child: IconButton(
-                onPressed: () {
-                  if (currentUser.favorite!.contains(widget.placeID)) {
-                    currentUser.favorite!.remove(widget.placeID);
-                  } else {
-                    currentUser.favorite!.add(widget.placeID);
-                  }
-                  setState(() {
-                    currentUser;
-                  });
-                  userColl.doc(currentUser.id).update({
-                    "favorite": currentUser.favorite,
-                  });
-                },
-                icon: Icon(
-                  Icons.favorite,
-                  color: currentUser.favorite!.contains(widget.placeID)
-                      ? Colors.red
-                      : Colors.white,
-                  size: 27,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black38,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    if (currentUser.favorite!.contains(widget.placeID)) {
+                      currentUser.favorite!.remove(widget.placeID);
+                    } else {
+                      currentUser.favorite!.add(widget.placeID);
+                    }
+                    setState(() {
+                      currentUser;
+                    });
+                    userColl.doc(currentUser.id).update({
+                      "favorite": currentUser.favorite,
+                    });
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                    color: currentUser.favorite!.contains(widget.placeID)
+                        ? Colors.red
+                        : Colors.white,
+                    size: 27,
+                  ),
                 ),
               ),
             ),
             Positioned(
               top: 30,
               left: 10,
-              child: IconButton(
-                onPressed: () async {
-                  final packDoc = await FirebaseFirestore.instance
-                      .collection("packages")
-                      .doc(widget.placeID)
-                      .get();
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black38,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: IconButton(
+                  onPressed: () async {
+                    final packDoc = await FirebaseFirestore.instance
+                        .collection("packages")
+                        .doc(widget.placeID)
+                        .get();
 
-                  String packTheme = packDoc.data()!["theme"];
-                  switch (widget.page) {
-                    case 5:
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MyHomeScreen(),
-                        ),
-                      );
-                      break;
-                    case 1:
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              MyPackagesList(value: packTheme),
-                        ),
-                      );
-                      break;
-                    case 2:
-                      widget.country == "United Arab Emirates" ? Navigator.of(
-                          context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              MyPackagesList(value: "U.A.E"),
-                        ),
-                      ) : Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              MyPackagesList(value: widget.country),
-                        ),
-                      );
-                      break;
-                    case 3:
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MyFavoriteScreen(),
-                        ),
-                      );
-                      break;
+                    String packTheme = packDoc.data()!["theme"];
+                    switch (widget.page) {
+                      case 5:
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MyHomeScreen(),
+                          ),
+                        );
+                        break;
+                      case 1:
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MyPackagesList(value: packTheme),
+                          ),
+                        );
+                        break;
+                      case 2:
+                        widget.country == "United Arab Emirates" ? Navigator.of(
+                            context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MyPackagesList(value: "U.A.E"),
+                          ),
+                        ) : Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MyPackagesList(value: widget.country),
+                          ),
+                        );
+                        break;
+                      case 3:
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => MyFavoriteScreen(),
+                          ),
+                        );
+                        break;
 
-                    case 4:
-                    default:
-                      Navigator.pop(context);
-                  }
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
-                  size: 28,
+                      case 4:
+                      default:
+                        Navigator.pop(context);
+                    }
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white,
+                    size: 28,
+                  ),
                 ),
               ),
             ),
             Positioned(
               top: 30,
-              right: 60,
-              child: IconButton(
-                onPressed: () async {
-                  userRatedPack
-                      ? showSuccessAlert(
-                      context, "You have already rated this package.")
-                      : showRatingDialog();
-                },
-                icon: Icon(
-                  Icons.star_rate_rounded,
-                  color: userRatedPack ? Colors.amber : Colors.white,
-                  size: 32,
+              right: 80,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black38,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: IconButton(
+                  onPressed: () async {
+                    userRatedPack
+                        ? showSuccessAlert(
+                        context, "You have already rated this package.")
+                        : showRatingDialog();
+                  },
+                  icon: Icon(
+                    Icons.star_rate_rounded,
+                    color: userRatedPack ? Colors.amber : Colors.white,
+                    size: 32,
+                  ),
                 ),
               ),
             ),

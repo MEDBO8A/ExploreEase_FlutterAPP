@@ -32,7 +32,7 @@ class _CountryWidgetState extends State<CountryWidget> {
       "$size packages",
       style: const TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 14,
+        fontSize: 13,
         color: Colors.white,
       ),
     );

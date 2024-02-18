@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:project/screens/sign_in_screen.dart';
-import 'package:project/screens/welcome/welcome_screen.dart';
+import 'package:project/screens/welcome_screen.dart';
 import 'package:project/services/state.dart';
 import 'package:project/themes/dark_theme.dart';
 import 'package:project/themes/light_theme.dart';

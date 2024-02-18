@@ -72,7 +72,7 @@ class _PackageBoxState extends State<PackageBox> {
       child: Container(
         margin: const EdgeInsets.all(7),
         width: screenWidth * 0.9,
-        height: screenHeight * 0.29,
+
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: themeColors.onBackground,
@@ -102,37 +102,44 @@ class _PackageBoxState extends State<PackageBox> {
                 Positioned(
                   top: 8,
                   right: 8,
-                  child: IconButton(
-                    onPressed: () async{
-                      if (currentUser!.favorite!.contains(widget.placeID)) {
-                        setState(() {
-                          currentUser!.favorite!.remove(widget.placeID);
-                        });
-                      } else {
-                        setState(() {
-                          currentUser!.favorite!.add(widget.placeID);
-                        });
-                      }
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: IconButton(
+                      onPressed: () async{
+                        if (currentUser!.favorite!.contains(widget.placeID)) {
+                          setState(() {
+                            currentUser!.favorite!.remove(widget.placeID);
+                          });
+                        } else {
+                          setState(() {
+                            currentUser!.favorite!.add(widget.placeID);
+                          });
+                        }
 
-                      await userColl.doc(currentUser!.id).update({"favorite":currentUser!.favorite});
+                        await userColl.doc(currentUser!.id).update({"favorite":currentUser!.favorite});
 
-                      widget.onFavoriteChanged?.call();
-                    },
-                    icon: Icon(
-                      Icons.favorite,
-                      color: currentUser!.favorite!.contains(widget.placeID)
-                          ? Colors.red
-                          : Colors.white,
-                      size: 27,
+                        widget.onFavoriteChanged?.call();
+                      },
+                      icon: Icon(
+                        Icons.favorite,
+                        color: currentUser!.favorite!.contains(widget.placeID)
+                            ? Colors.red
+                            : Colors.white,
+                        size: 27,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
             SingleChildScrollView(
-              padding: EdgeInsets.only(top: 10),
               scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
