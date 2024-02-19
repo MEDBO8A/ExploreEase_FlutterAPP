@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import 'package:wikipedia/wikipedia.dart';
@@ -14,7 +13,7 @@ Widget getPlaceTime(double lat, double long) {
     future: placeTime(lat, long),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Text(" --");
+        return const Text(" --");
       } else if (snapshot.hasError) {
         return Text('Error: ${snapshot.error}');
       } else {
@@ -39,7 +38,7 @@ Widget getPlaceWeather(double lat, double long){
       future: placeWeather(lat, long),
       builder: (context,snapshot){
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("  --");
+          return const Text("  --");
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -58,7 +57,7 @@ Widget getPlaceDescription(String place){
       future: placeDescription(place),
       builder: (context,snapshot){
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("  --");
+          return const Text("  --");
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -71,7 +70,7 @@ Future placeDescription(String place) async {
   String description = "";
   try{
     Wikipedia instance = Wikipedia();
-    var result = await instance.searchQuery(searchQuery: "$place",limit: 1);
+    var result = await instance.searchQuery(searchQuery: place,limit: 1);
     for(int i=0; i<result!.query!.search!.length; i++){
       description+="${result.query!.search![i].snippet}. \n";
     }

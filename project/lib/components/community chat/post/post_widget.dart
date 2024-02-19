@@ -32,12 +32,9 @@ class _PostWidgetState extends State<PostWidget>{
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: themeColors.onBackground,

@@ -17,6 +17,8 @@ import '../services/authServices.dart';
 import '../services/dataBaseServices.dart';
 
 class MyHomeScreen extends StatefulWidget {
+  const MyHomeScreen({super.key});
+
   @override
   _MyHomeScreenState createState() => _MyHomeScreenState();
 }
@@ -53,8 +55,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       drawer: NavigationDrawerBar(),
@@ -94,7 +94,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => MyProfileScreen(),
+                    builder: (context) => const MyProfileScreen(),
                   ),
                 );
               },
@@ -122,7 +122,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               style: theme.textTheme.bodyLarge,
             ),
             addVerticalSpace(20),
-            MySearchTextField(),
+            const MySearchTextField(),
             addVerticalSpace(30),
             Text(
               "Categories",
@@ -132,7 +132,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               ),
             ),
             addVerticalSpace(15),
-            CategoriesList(),
+            const CategoriesList(),
             addVerticalSpace(30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,10 +167,10 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               ),
             ),
             addVerticalSpace(10),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.98,
               height: MediaQuery.of(context).size.height * 0.11,
-              child: PopularPacksList(),
+              child: const PopularPacksList(),
             ),
           ],
         ),

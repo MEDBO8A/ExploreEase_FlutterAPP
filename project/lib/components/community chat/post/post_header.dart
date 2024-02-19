@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
-import 'package:project/model/user.dart';
 
 class PostHeader extends StatelessWidget{
   final String userImage;
@@ -13,9 +10,6 @@ class PostHeader extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Row(
       children: [
         CircleAvatar(
@@ -28,7 +22,7 @@ class PostHeader extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(userName,style: theme.textTheme.titleMedium,),
-            Text(postTime,style: TextStyle(color: Colors.grey,fontSize: 13),),
+            Text(postTime,style: const TextStyle(color: Colors.grey,fontSize: 13),),
           ],
         ),
       ],

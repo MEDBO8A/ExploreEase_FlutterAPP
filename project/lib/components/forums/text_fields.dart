@@ -5,9 +5,9 @@ class MyMailTextField extends StatelessWidget {
   final String? error;
 
   const MyMailTextField({
-    Key? key,
+    super.key,
     required this.controller, this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,9 @@ class MyNameTextField extends StatelessWidget {
   final String? error;
 
   const MyNameTextField({
-    Key? key,
+    super.key,
     required this.controller, this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +118,10 @@ class MyPasswordTextField extends StatefulWidget {
   final String? error;
 
   const MyPasswordTextField({
-    Key? key,
+    super.key,
     required this.controller,
     this.error,
-  }) : super(key: key);
+  });
 
   @override
   _MyPasswordTextFieldState createState() => _MyPasswordTextFieldState();
@@ -192,9 +192,9 @@ class MySearchTextField extends StatelessWidget {
   final String? error;
 
   const MySearchTextField({
-    Key? key,
+    super.key,
     this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

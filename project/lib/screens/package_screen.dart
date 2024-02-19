@@ -1,34 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, non_constant_identifier_names, deprecated_member_use, unnecessary_null_comparison, use_build_context_synchronously, unused_local_variable, unused_import, prefer_collection_literals
-
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coordinate_calculator/dlcoordinate_calculator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
-import 'package:project/screens/favorite_screen.dart';
-import 'package:project/screens/home_screen.dart';
-import 'package:weather/weather.dart';
-import 'package:wikipedia/wikipedia.dart';
-import 'package:worldtime/worldtime.dart';
-
-import '../components/package/list_package.dart';
 import '../components/package/package screen components/buttom_widget.dart';
 import '../components/package/package screen components/header_screen_widget.dart';
-import '../components/package/package screen components/map_widget.dart';
 import '../components/package/package screen components/overview_widget.dart';
-import '../components/rating_bar.dart';
 import '../model/user.dart';
-import '../services/alert_dialog.dart';
 
 class MyPackageScreen extends StatefulWidget {
   final int page;
@@ -63,7 +42,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
   final userRatingsColl = FirebaseFirestore.instance.collection('userRatings');
 
 
-  LatLng placeCoords=LatLng(0, 0);
+  LatLng placeCoords=const LatLng(0, 0);
   Future getLongLat() async{
     final pack = await FirebaseFirestore.instance.collection("packages").doc(widget.placeID).get();
     final data = pack.data() as Map;
@@ -81,10 +60,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       body: SingleChildScrollView(
@@ -102,12 +78,12 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
               rateNB: widget.rateNB,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   addVerticalSpace(20),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                     height: 1,
                   ),
@@ -157,7 +133,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(10),
@@ -191,7 +167,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: GoogleMap(
@@ -207,7 +183,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
         ),
         markers: {
           Marker(
-            markerId: MarkerId("Source"),
+            markerId: const MarkerId("Source"),
             position: placeCoords,
           ),
         },

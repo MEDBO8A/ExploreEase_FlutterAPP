@@ -16,7 +16,6 @@ class WelcomeButtons extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final heigth = MediaQuery.of(context).size.height;
     return ElevatedButton(
         onPressed: onPressed,
@@ -31,7 +30,7 @@ class WelcomeButtons extends StatelessWidget{
         child: Center(
             child: Text(
               content,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 letterSpacing: 1,
                 fontWeight: FontWeight.bold,

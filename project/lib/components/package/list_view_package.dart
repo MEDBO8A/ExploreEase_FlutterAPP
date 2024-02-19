@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-
 import 'box_package_widget.dart';
 
 class MyListView extends StatelessWidget {
   final String packName;
   final int page;
 
-  MyListView({
+  const MyListView({
     super.key,
     required this.packName,
     required this.page,
@@ -28,7 +25,7 @@ class MyListView extends StatelessWidget {
       stream: collection.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
 
         if (snapshot.hasError) {

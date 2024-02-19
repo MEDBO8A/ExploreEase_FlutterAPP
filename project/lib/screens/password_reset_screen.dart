@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously, unrelated_type_equality_checks, unnecessary_null_comparison
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../components/forums/text_fields.dart';
@@ -51,7 +50,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
     return Scaffold(
       backgroundColor: themeColors.background,
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -75,7 +74,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
                       resetPassword();
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "Reset Password",
                     style: TextStyle(
                       color: Colors.white,
@@ -90,7 +89,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     "Cancel",
                     style: TextStyle(
                       color: Colors.white,

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/package_screen.dart';
-
 import '../../model/user.dart';
 
 class PackageBox extends StatefulWidget {
@@ -18,7 +17,7 @@ class PackageBox extends StatefulWidget {
   final VoidCallback? onFavoriteChanged;
 
   const PackageBox({
-    Key? key,
+    super.key,
     required this.page,
     required this.placeID,
     required this.name,
@@ -29,7 +28,7 @@ class PackageBox extends StatefulWidget {
     required this.rateNB,
     required this.price,
     this.onFavoriteChanged,
-  }) : super(key: key);
+  });
 
   @override
   _PackageBoxState createState() => _PackageBoxState();
@@ -82,7 +81,7 @@ class _PackageBoxState extends State<PackageBox> {
               blurStyle: BlurStyle.normal,
               color: themeColors.onBackground,
               spreadRadius: 1,
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
             ),
           ],
         ),
@@ -137,27 +136,27 @@ class _PackageBoxState extends State<PackageBox> {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       color: themeColors.onPrimary,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 15,
                           color: Colors.white,
                         ),
                         Text(
                           " ${widget.rate} ",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
                             color: Colors.white,

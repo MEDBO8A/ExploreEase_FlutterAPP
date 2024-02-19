@@ -45,7 +45,7 @@ class _PackagesState extends State<MyPackagesList> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
@@ -57,7 +57,7 @@ class _PackagesState extends State<MyPackagesList> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
+        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
         child: content(),
       ),
     );

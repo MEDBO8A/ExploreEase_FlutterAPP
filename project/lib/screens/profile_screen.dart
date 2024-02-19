@@ -1,9 +1,5 @@
-// ignore_for_file: deprecated_member_use, prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously
-
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -54,12 +50,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => MyHomeScreen(),
+                builder: (context) => const MyHomeScreen(),
               ),
             );
           },
@@ -169,7 +165,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 width: screenWidth,
                 height: screenHeight * 0.8,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),
@@ -228,10 +224,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   }
 
   Future showEditField(BuildContext context, String field) async {
-    final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     TextEditingController textController = TextEditingController();
     String newValue = "";
 

@@ -14,12 +14,10 @@ class CategorieBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 5,
           vertical: 5
         ),
@@ -33,7 +31,7 @@ class CategorieBox extends StatelessWidget {
               backgroundImage: AssetImage(image),
             ),
             Text(
-              " ${name}",
+              " $name",
               style: theme.textTheme.bodyLarge,
             ),
           ],

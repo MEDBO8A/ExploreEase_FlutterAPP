@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CountryWidget extends StatefulWidget {
   final CollectionReference collection;
 
-  const CountryWidget({required this.collection});
+  const CountryWidget({super.key, required this.collection});
 
   @override
   _CountryWidgetState createState() => _CountryWidgetState();

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/components/countries/collections_sizes_generator.dart';
-
 import '../../helping widgets/sizedbox_widget.dart';
 import '../package/list_package.dart';
 import 'box_country_widget.dart';
@@ -12,18 +10,6 @@ class CountriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final themeColors = Theme
-        .of(context)
-        .colorScheme;
-    final screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -33,15 +19,12 @@ class CountriesList extends StatelessWidget {
             country: "Tunisia",
             image: "assets/images/countries/tunisie.png",
             onTap: () {
-
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      MyPackagesList(value: "Tunisia"),
+                      const MyPackagesList(value: "Tunisia"),
                 ),
               );
-
-
             },
           ),
           addHorizentalSpace(10),
@@ -49,15 +32,12 @@ class CountriesList extends StatelessWidget {
             country: "Spain",
             image: "assets/images/countries/spain.png",
             onTap: () {
-
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      MyPackagesList(value: "Spain"),
+                      const MyPackagesList(value: "Spain"),
                 ),
               );
-
-
             },
           ),
           addHorizentalSpace(10),
@@ -65,14 +45,12 @@ class CountriesList extends StatelessWidget {
             country: "Italy",
             image: "assets/images/countries/italy.png",
             onTap: () {
-
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      MyPackagesList(value: "Italy"),
+                      const MyPackagesList(value: "Italy"),
                 ),
               );
-
             },
           ),
           addHorizentalSpace(10),
@@ -83,10 +61,9 @@ class CountriesList extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      MyPackagesList(value: "Greece"),
+                      const MyPackagesList(value: "Greece"),
                 ),
               );
-
             },
           ),
           addHorizentalSpace(10),
@@ -100,10 +77,9 @@ class CountriesList extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            MyPackagesList(value: "U.A.E"),
+                            const MyPackagesList(value: "U.A.E"),
                       ),
                     );
-
                   },
                 ),
                 addHorizentalSpace(10),
@@ -114,10 +90,9 @@ class CountriesList extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            MyPackagesList(value: "Australia"),
+                            const MyPackagesList(value: "Australia"),
                       ),
                     );
-
                   },
                 ),
                 addHorizentalSpace(10),
@@ -129,11 +104,9 @@ class CountriesList extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            MyPackagesList(value: "Croatia"),
+                            const MyPackagesList(value: "Croatia"),
                       ),
                     );
-
-
                   },
                 ),
                 addHorizentalSpace(10),
@@ -141,14 +114,12 @@ class CountriesList extends StatelessWidget {
                   country: "Turkey",
                   image: "assets/images/countries/turkey.png",
                   onTap: () {
-
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            MyPackagesList(value: "Turkey"),
+                            const MyPackagesList(value: "Turkey"),
                       ),
                     );
-
                   },
                 ),
               ],

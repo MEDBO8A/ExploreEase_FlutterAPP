@@ -4,11 +4,12 @@ import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/password_reset_screen.dart';
 import 'package:project/screens/sign_up_screen.dart';
 import 'package:project/services/authServices.dart';
-
 import '../components/sign in&up components/buttons.dart';
 import '../components/forums/text_fields.dart';
 
 class MySignInScreen extends StatefulWidget {
+  const MySignInScreen({super.key});
+
   @override
   _MySignInScreenState createState() => _MySignInScreenState();
 }
@@ -16,8 +17,8 @@ class MySignInScreen extends StatefulWidget {
 
 
 class _MySignInScreenState extends State<MySignInScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   AuthServices auth = AuthServices();
 
   String? _emailError;
@@ -55,7 +56,7 @@ class _MySignInScreenState extends State<MySignInScreen> {
       backgroundColor: themeColors.background,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 40,
           horizontal: 20,
         ),
@@ -91,7 +92,7 @@ class _MySignInScreenState extends State<MySignInScreen> {
               addVerticalSpace(screenHeight * 0.03),
         
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

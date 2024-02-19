@@ -4,7 +4,7 @@ class MyRatingBar extends StatelessWidget {
   final num rating;
   final double size;
 
-  MyRatingBar({required this.rating,required this.size});
+  MyRatingBar({super.key, required this.rating,required this.size});
 
   @override
   Widget build(BuildContext context) {

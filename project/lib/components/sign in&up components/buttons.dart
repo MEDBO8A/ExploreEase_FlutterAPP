@@ -3,6 +3,8 @@ import 'package:project/services/authServices.dart';
 
 class GoogleButtonWidget extends StatelessWidget{
   final auth = AuthServices();
+
+  GoogleButtonWidget({super.key});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -13,7 +15,7 @@ class GoogleButtonWidget extends StatelessWidget{
       },
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 18,
         ),
         decoration: BoxDecoration(
@@ -28,7 +30,7 @@ class GoogleButtonWidget extends StatelessWidget{
               width: 30,
               height: 30,
             ),
-            SizedBox(width: 15,),
+            const SizedBox(width: 15,),
             Text(
               "Sign in with google",
               style: theme.textTheme.titleMedium?.copyWith(
@@ -59,7 +61,7 @@ class MainButtonWidget extends StatelessWidget{
       onTap: onPressed,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 20,
         ),
         decoration: BoxDecoration(

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/sign_in_screen.dart';
-
 import '../components/sign in&up components/buttons.dart';
 import '../components/forums/text_fields.dart';
 import '../services/authServices.dart';
 
 class MySignUpScreen extends StatefulWidget {
+  const MySignUpScreen({super.key});
+
   @override
   _MySignUpScreenState createState() => _MySignUpScreenState();
 }
@@ -15,9 +16,9 @@ class MySignUpScreen extends StatefulWidget {
 
 
 class _MySignUpScreenState extends State<MySignUpScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   AuthServices auth = AuthServices();
 
   String? _emailError;
@@ -62,7 +63,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
       backgroundColor: themeColors.background,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 40,
           horizontal: 20,
         ),
@@ -95,7 +96,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
               addVerticalSpace(screenHeight * 0.03),
 
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -148,7 +149,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
                         Text("Have an Account ?",style: theme.textTheme.titleMedium),
                         TextButton(
                           onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MySignInScreen()),);
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MySignInScreen()),);
                           },
                           child: Text(
                             " Sign in",

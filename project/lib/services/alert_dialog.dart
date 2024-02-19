@@ -15,7 +15,7 @@ showErrorAlert(BuildContext context, String? message) {
               Icons.error,
               color: themeColors.error,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               'Error',
               style: TextStyle(
@@ -54,7 +54,7 @@ Future showSuccessAlert(BuildContext context,String message) {
                 Icons.check_circle,
                 color: themeColors.onSurface,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 'Success',
                 style: TextStyle(

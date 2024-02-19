@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screens/home_screen.dart';
-
 import '../components/package/box_package_widget.dart';
 import '../model/user.dart';
 import '../services/alert_dialog.dart';
@@ -22,8 +20,6 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       appBar: AppBar(
@@ -40,7 +36,7 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -52,7 +48,7 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator.adaptive();
+            return const CircularProgressIndicator.adaptive();
           }
 
           if (snapshot.hasError) {
@@ -64,7 +60,7 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
 
           if (favoritePackages.isNotEmpty) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
               child: ListView.builder(
                 itemCount: favoritePackages.length,
                 itemBuilder: (context, index) {

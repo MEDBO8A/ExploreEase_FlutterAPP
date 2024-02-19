@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/screens/sign_in_screen.dart';
@@ -10,16 +9,13 @@ import '../screens/profile_screen.dart';
 import '../services/authServices.dart';
 
 class NavigationDrawerBar extends StatelessWidget {
-  NavigationDrawerBar({Key? key});
+  NavigationDrawerBar({super.key,});
   AuthServices auth = AuthServices();
   UserModel? user = UserModel.current;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Drawer(
       child: Material(
         color: themeColors.onBackground,
@@ -38,7 +34,7 @@ class NavigationDrawerBar extends StatelessWidget {
                               ? NetworkImage(user!.profPic)
                               : null,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Text(
@@ -48,7 +44,7 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontSize: 18,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         SingleChildScrollView(
@@ -63,15 +59,15 @@ class NavigationDrawerBar extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.grey,
                       height: 10,
                       thickness: 1,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     ListTile(
@@ -90,7 +86,7 @@ class NavigationDrawerBar extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyProfileScreen(),
+                            builder: (context) => const MyProfileScreen(),
                           ),
                         );
                       },
@@ -112,7 +108,7 @@ class NavigationDrawerBar extends StatelessWidget {
 
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyFavoriteScreen(),
+                            builder: (context) => const MyFavoriteScreen(),
                           ),
                         );
                       },
@@ -142,12 +138,12 @@ class NavigationDrawerBar extends StatelessWidget {
                   ],
                 ),
               ),
-              Divider(
+              const Divider(
                 color: Colors.grey,
                 height: 10,
                 thickness: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ListTile(
@@ -225,7 +221,7 @@ class NavigationDrawerBar extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Yes",
                                   style: TextStyle(
                                     color: Colors.white,
@@ -240,7 +236,7 @@ class NavigationDrawerBar extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Cancel",
                                   style: TextStyle(
                                     color: Colors.white,

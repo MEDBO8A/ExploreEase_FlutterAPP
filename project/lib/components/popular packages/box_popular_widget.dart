@@ -48,8 +48,8 @@ class PopularPackageBox extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.only(right: 15),
-        padding: EdgeInsets.only(right: 10),
+        margin: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.only(right: 10),
         height: screenHeight * 0.15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -74,21 +74,21 @@ class PopularPackageBox extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(3),
                       decoration: BoxDecoration(
                         color: themeColors.onPrimary,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star_border_outlined,
                             size: 17,
                             color: Colors.white,
                           ),
                           Text(
                             " $rate ",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               color: Colors.white,

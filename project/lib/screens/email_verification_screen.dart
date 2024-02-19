@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
@@ -16,8 +14,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Center(
       child: Padding(
@@ -50,7 +46,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               width: 200,
               height: 50,
               child: ElevatedButton(

@@ -1,10 +1,8 @@
-// ignore_for_file: deprecated_member_use, avoid_web_libraries_in_flutter, await_only_futures, use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/screens/email_verification_screen.dart';
-
 import '../model/user.dart';
 import '../screens/home_screen.dart';
 import 'alert_dialog.dart';
@@ -58,7 +56,7 @@ class AuthServices {
 
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => MyHomeScreen(),
+            builder: (context) => const MyHomeScreen(),
           ),
         );
       }
@@ -83,7 +81,7 @@ class AuthServices {
       if (credential.user!.emailVerified) {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => MyHomeScreen(),
+            builder: (context) => const MyHomeScreen(),
           ),
         );
       } else {

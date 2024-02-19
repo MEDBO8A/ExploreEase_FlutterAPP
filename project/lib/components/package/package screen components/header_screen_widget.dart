@@ -1,8 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../../../helping widgets/sizedbox_widget.dart';
 import '../../../model/user.dart';
 import '../../../screens/favorite_screen.dart';
@@ -82,7 +80,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
         Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30),
               ),
@@ -162,7 +160,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                             context).push(
                           MaterialPageRoute(
                             builder: (context) =>
-                                MyPackagesList(value: "U.A.E"),
+                                const MyPackagesList(value: "U.A.E"),
                           ),
                         ) : Navigator.of(context).push(
                           MaterialPageRoute(
@@ -174,7 +172,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                       case 3:
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MyFavoriteScreen(),
+                            builder: (context) => const MyFavoriteScreen(),
                           ),
                         );
                         break;
@@ -184,7 +182,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                         Navigator.pop(context);
                     }
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios_new_rounded,
                     color: Colors.white,
                     size: 28,
@@ -219,7 +217,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
         ),
         addVerticalSpace(10),
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -230,7 +228,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
               addVerticalSpace(5),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.place,
                     size: 20,
                     color: Colors.grey,
@@ -246,7 +244,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${var_rate}",
+                    "$var_rate",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: themeColors.secondary,
@@ -261,7 +259,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                         size: 22,
                       ),
                       Text(
-                        "${var_rateNB} Reviews",
+                        "$var_rateNB Reviews",
                         style: TextStyle(
                             color: themeColors.surface, fontSize: 16),
                       )
@@ -303,8 +301,8 @@ class _HeaderScreenState extends State<HeaderScreen> {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: EdgeInsets.all(1),
-              itemBuilder: (context, _) => Icon(
+              itemPadding: const EdgeInsets.all(1),
+              itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
                 size: 10,

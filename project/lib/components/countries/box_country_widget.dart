@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'collections_sizes_generator.dart';
 class CountryBox extends StatelessWidget {
   final String country;
@@ -15,8 +14,6 @@ class CountryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final themeColors = Theme.of(context).colorScheme;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Row(
@@ -41,7 +38,7 @@ class CountryBox extends StatelessWidget {
                     left: 10,
                     bottom: 12,
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       height: screenHeight * 0.082,
                       width: screenWidth * 0.26,
                       decoration: BoxDecoration(
@@ -110,6 +107,6 @@ class CountryBox extends StatelessWidget {
       default:
         break;
     }
-    return Text("0");
+    return const Text("0");
   }
 }

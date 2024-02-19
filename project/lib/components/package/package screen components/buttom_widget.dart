@@ -4,7 +4,6 @@ Container bottomWidget(BuildContext context, dynamic price) {
   final theme = Theme.of(context);
   final themeColors = Theme.of(context).colorScheme;
   final screenHeight = MediaQuery.of(context).size.height;
-  final screenWidth = MediaQuery.of(context).size.width;
   return Container(
     height: screenHeight * 0.1,
     decoration: BoxDecoration(
@@ -13,8 +12,8 @@ Container bottomWidget(BuildContext context, dynamic price) {
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
       ),
-      boxShadow: [
-        const BoxShadow(
+      boxShadow: const [
+        BoxShadow(
           blurRadius: 9,
           blurStyle: BlurStyle.normal,
           color: Colors.grey,
@@ -40,7 +39,6 @@ Container bottomWidget(BuildContext context, dynamic price) {
                   builder: (context) => MyBookPackage(),
                 ),
               );
-
                */
           },
           child: Container(
