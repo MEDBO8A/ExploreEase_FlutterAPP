@@ -130,7 +130,7 @@ class NavigationDrawerBar extends StatelessWidget {
 
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => CommunityChatScreen(),
+                            builder: (context) => const CommunityChatScreen(),
                           ),
                         );
                       },

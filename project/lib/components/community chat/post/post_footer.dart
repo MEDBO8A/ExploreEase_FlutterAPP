@@ -9,6 +9,7 @@ class PostFooter extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       children: [
         Container(
@@ -19,7 +20,7 @@ class PostFooter extends StatelessWidget{
           padding: const EdgeInsets.all(5),
           child: const Icon(Icons.favorite,color: Colors.white,size: 20,),
         ),
-        Text(" $loves"),
+        Text(" $loves",style: theme.textTheme.labelMedium,),
         addHorizentalSpace(20),
         Container(
           decoration: BoxDecoration(
@@ -29,7 +30,7 @@ class PostFooter extends StatelessWidget{
           padding: const EdgeInsets.all(5),
           child: const Icon(Icons.thumb_up,color: Colors.white,size: 20,),
         ),
-        Text(" $likes"),
+        Text(" $likes",style: theme.textTheme.labelMedium,),
       ],
     );
   }

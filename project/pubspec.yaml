@@ -57,6 +57,13 @@ dependencies:
   coordinate_calculator: ^0.0.1
   connectivity_plus: ^5.0.2
   wikipedia: ^0.0.8
+  web_socket_channel: ^2.4.0
+  galleryimage: ^2.0.1
+  gallery_image_viewer: ^1.2.0
+  faded_image_list: ^0.0.3
+  photo_view: ^0.14.0
+  carousel_slider: ^4.2.1
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:

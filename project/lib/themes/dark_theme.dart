@@ -47,6 +47,9 @@ ThemeData darkTheme = ThemeData(
         letterSpacing: 1,
         fontSize: 15,
       ),
-    )
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: onSecondary,
+    ),
 
 );
