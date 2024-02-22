@@ -6,6 +6,49 @@ class DBServices {
   final CollectionReference _userCollection =
   FirebaseFirestore.instance.collection("user");
 
+  final CollectionReference _postCollection =
+  FirebaseFirestore.instance.collection("post");
+
+
+
+  Future<bool> savePost(Map<String, dynamic> post, String userID,int time) async {
+    try {
+
+      await _postCollection.doc("$userID-$time").set(post);
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> deletePost(String userID,DateTime time) async {
+    try {
+
+      await _postCollection.doc("$userID-$time").delete();
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> editPost(String userID,DateTime time) async {
+    try {
+
+      await _postCollection.doc("$userID-$time").delete();
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+
+
   Future<bool> saveUser(UserModel user) async {
     try {
       if (await getUser(user.id) != null) {
@@ -39,4 +82,6 @@ class DBServices {
       return null;
     }
   }
+
+
 }

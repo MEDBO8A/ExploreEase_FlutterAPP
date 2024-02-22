@@ -14,10 +14,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Center(
       child: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1,vertical: screenHeight * 0.1),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -50,7 +50,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
     return Scaffold(
       backgroundColor: themeColors.background,
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,vertical: screenHeight * 0.1),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

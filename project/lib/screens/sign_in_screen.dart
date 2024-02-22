@@ -56,10 +56,7 @@ class _MySignInScreenState extends State<MySignInScreen> {
       backgroundColor: themeColors.background,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.symmetric(
-          vertical: 40,
-          horizontal: 20,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,vertical: screenHeight * 0.1),
         child: Center(
           child: Column(
             children: [

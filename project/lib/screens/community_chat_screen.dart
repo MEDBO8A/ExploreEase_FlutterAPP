@@ -20,6 +20,8 @@ class _CommunityChatScreenState extends State<CommunityChatScreen>{
   Widget build(BuildContext context) {
     final themeColors = Theme.of(context).colorScheme;
     final theme = Theme.of(context);
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       appBar: AppBar(
@@ -36,7 +38,7 @@ class _CommunityChatScreenState extends State<CommunityChatScreen>{
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5,),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.0125,vertical: screenHeight * 0.025),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(

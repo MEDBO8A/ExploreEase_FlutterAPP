@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
+import 'package:project/services/alert_dialog.dart';
+import 'package:project/services/dataBaseServices.dart';
 
 class AddPostScreen extends StatefulWidget{
   const AddPostScreen({super.key});
@@ -39,7 +41,7 @@ class _AddPostScreenState extends State<AddPostScreen>{
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10,),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.0125,vertical: screenHeight * 0.025),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Center(
@@ -47,6 +49,7 @@ class _AddPostScreenState extends State<AddPostScreen>{
               children: [
                 Row(
                   children: [
+                    addHorizentalSpace(10),
                     CircleAvatar(
                       backgroundImage: NetworkImage(user!.profPic),
                       radius: 25,
@@ -151,8 +154,23 @@ class _AddPostScreenState extends State<AddPostScreen>{
                         style: ElevatedButton.styleFrom(
                           backgroundColor: themeColors.primary,
                         ),
-                        onPressed: () {
-
+                        onPressed: () async{
+                          if (_postController.text.isNotEmpty){
+                            await DBServices().savePost(
+                              {
+                                "userID": user!.id,
+                                "time": DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
+                                "content": _postController.text,
+                                "images": selectedImages,
+                                "likes": 0,
+                                "loves": 0,
+                              },
+                              user!.id,
+                              DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
+                            );
+                          }else{
+                            showErrorAlert(context, "Write a content");
+                          }
                         },
                         child: const Text(
                           "Share Post",
@@ -209,7 +227,6 @@ class _AddPostScreenState extends State<AddPostScreen>{
                         if (!selectedImages.contains(pickedFile.path)){
                           selectedImages.add(pickedFile.path);
                         }
-                        print(pickedFile.path);
                       });
                     }
                   },
@@ -230,7 +247,6 @@ class _AddPostScreenState extends State<AddPostScreen>{
                         if (!selectedImages.contains(pickedFile.path)){
                           selectedImages.add(pickedFile.path);
                         }
-                        print(pickedFile.path);
                       });
                     }
                   },

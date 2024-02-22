@@ -55,6 +55,8 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       drawer: NavigationDrawerBar(),
@@ -104,10 +106,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 15,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.025,vertical: screenHeight * 0.025),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -121,7 +120,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               "Explore the beauty of the world ",
               style: theme.textTheme.bodyLarge,
             ),
-            addVerticalSpace(20),
+            addVerticalSpace(40),
             const MySearchTextField(),
             addVerticalSpace(30),
             Text(

@@ -23,9 +23,10 @@ class _MyWelcomeScreenState extends State<MyWelcomeScreen> {
       body: SingleChildScrollView(
         scrollDirection:Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1,vertical: screenHeight * 0.1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               themeColors.surface == Colors.white? Transform.scale(
                 scale: screenWidth * 0.0025, // Adjust the scale factor to make it smaller

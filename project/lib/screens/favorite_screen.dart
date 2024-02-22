@@ -20,6 +20,8 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themeColors = Theme.of(context).colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: themeColors.background,
       appBar: AppBar(
@@ -60,7 +62,7 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
 
           if (favoritePackages.isNotEmpty) {
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15,),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,vertical: screenHeight * 0.025),
               child: ListView.builder(
                 itemCount: favoritePackages.length,
                 itemBuilder: (context, index) {

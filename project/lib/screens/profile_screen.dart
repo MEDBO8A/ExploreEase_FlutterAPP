@@ -63,6 +63,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(vertical: screenHeight * 0.0125),
         child: Container(
           color: themeColors.background,
           child: Column(
