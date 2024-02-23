@@ -7,11 +7,11 @@ import 'package:project/helping%20widgets/sizedbox_widget.dart';
 class PostWidget extends StatefulWidget{
   final String userImage;
   final String userName;
-  final String postTime;
+  final int postTime;
   final String postContent;
-  final int loves;
-  final int likes;
-  final List<String> images;
+  final List<dynamic> lovesList;
+  final List<dynamic> images;
+  final String userID;
 
   const PostWidget({
     super.key,
@@ -19,9 +19,7 @@ class PostWidget extends StatefulWidget{
     required this.userName,
     required this.postTime,
     required this.postContent,
-    required this.loves,
-    required this.likes,
-    required this.images,
+    required this.images, required this.userID, required this.lovesList,
   });
 
 
@@ -43,11 +41,11 @@ class _PostWidgetState extends State<PostWidget>{
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          PostHeader(postTime: widget.postTime,userImage: widget.userImage,userName: widget.userName),
+          PostHeader(postContent: widget.postContent, images: widget.images, userID: widget.userID, postTime: widget.postTime, userImage: widget.userImage, userName: widget.userName),
           addVerticalSpace(10),
-          PostContent(images: widget.images,postContent: widget.postContent),
+          PostContent(images: widget.images, postContent: widget.postContent),
           addVerticalSpace(10),
-          PostFooter(likes: widget.likes,loves: widget.loves),
+          PostFooter(userID: widget.userID, lovesList: widget.lovesList, postTime: widget.postTime),
         ],
       ),
     );

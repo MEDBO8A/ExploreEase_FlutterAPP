@@ -1,9 +1,10 @@
 import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
+import 'package:project/screens/community_chat_screen.dart';
 import 'package:project/services/alert_dialog.dart';
 import 'package:project/services/dataBaseServices.dart';
 
@@ -38,6 +39,18 @@ class _AddPostScreenState extends State<AddPostScreen>{
             color: themeColors.primary,
             fontWeight: FontWeight.bold,
           ),
+        ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CommunityChatScreen(),
+              ),
+            );
+          },
         ),
       ),
       body: Padding(
@@ -114,7 +127,7 @@ class _AddPostScreenState extends State<AddPostScreen>{
                       children: [
                         for (final image in selectedImages)
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 5),
+                            padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 10),
                             child: Stack(
                               children: [
                                 Image.file(
@@ -156,18 +169,36 @@ class _AddPostScreenState extends State<AddPostScreen>{
                         ),
                         onPressed: () async{
                           if (_postController.text.isNotEmpty){
+
+                            final List<String> imagesLinks = [];
+
+                            for(final image in selectedImages){
+                              Reference ref = FirebaseStorage.instance
+                                  .ref()
+                                  .child('post_images')
+                                  .child('${user!.id}_${selectedImages.indexOf(image)}.jpg');
+
+                              await ref.putFile(File(image));
+
+                              String imageUrl = await ref.getDownloadURL();
+
+                              imagesLinks.add(imageUrl);
+                            }
+
                             await DBServices().savePost(
                               {
                                 "userID": user!.id,
+                                "userName": user!.username,
+                                "userImage": user!.profPic,
                                 "time": DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
                                 "content": _postController.text,
-                                "images": selectedImages,
-                                "likes": 0,
-                                "loves": 0,
+                                "images": imagesLinks,
+                                "lovesList": [],
                               },
                               user!.id,
                               DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
                             );
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CommunityChatScreen()));
                           }else{
                             showErrorAlert(context, "Write a content");
                           }
@@ -225,7 +256,11 @@ class _AddPostScreenState extends State<AddPostScreen>{
                       Navigator.of(context).pop();
                       setState(() {
                         if (!selectedImages.contains(pickedFile.path)){
-                          selectedImages.add(pickedFile.path);
+                          if (selectedImages.length<2){
+                            selectedImages.add(pickedFile.path);
+                          }else{
+                            showErrorAlert(context, "You have just 2 photos to select! ");
+                          }
                         }
                       });
                     }
@@ -245,8 +280,11 @@ class _AddPostScreenState extends State<AddPostScreen>{
                       Navigator.of(context).pop();
                       setState(() {
                         if (!selectedImages.contains(pickedFile.path)){
-                          selectedImages.add(pickedFile.path);
-                        }
+                          if (selectedImages.length<2){
+                            selectedImages.add(pickedFile.path);
+                          }else{
+                            showErrorAlert(context, "You have just 2 photos to select! ");
+                          }                        }
                       });
                     }
                   },

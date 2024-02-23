@@ -23,7 +23,7 @@ class DBServices {
     }
   }
 
-  Future<bool> deletePost(String userID,DateTime time) async {
+  Future<bool> deletePost(String userID,int time) async {
     try {
 
       await _postCollection.doc("$userID-$time").delete();
@@ -35,10 +35,10 @@ class DBServices {
     }
   }
 
-  Future<bool> editPost(String userID,DateTime time) async {
+  Future<bool> editPost(String userID, int time, String field, dynamic newValue) async {
     try {
 
-      await _postCollection.doc("$userID-$time").delete();
+      await _postCollection.doc("$userID-$time").update({field:newValue});
 
       return true;
     } catch (e) {

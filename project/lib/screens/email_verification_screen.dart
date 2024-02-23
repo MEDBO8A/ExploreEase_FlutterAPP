@@ -67,11 +67,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     ),
                   );
                 },
-                child: Text(
+                child: const Text(
                   "Continue",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: themeColors.surface,
+                    color: Colors.white,
                     fontSize: 15,
                   ),
                 ),

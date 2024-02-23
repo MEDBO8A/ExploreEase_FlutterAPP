@@ -50,7 +50,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.push(
               context,
@@ -82,7 +82,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ),
                         fit: BoxFit.cover,
                       ),
-
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
@@ -94,15 +93,19 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         selectAndUploadImage();
                       },
                       icon: Container(
-                        padding: const EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                          color: themeColors.onBackground,
+                          border: Border.all(
+                            color: themeColors.background,
+                            width: 4,
+                          ),
+                          color: themeColors.primary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: Icon(
                           Icons.camera_alt,
                           color: themeColors.surface,
-                          size: 18,
+                          size: 15,
                         ),
                       ),
                     ),

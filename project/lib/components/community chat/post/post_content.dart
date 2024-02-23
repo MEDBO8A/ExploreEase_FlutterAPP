@@ -1,14 +1,16 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:galleryimage/galleryimage.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:project/helping%20widgets/sizedbox_widget.dart';
 
 class PostContent extends StatefulWidget {
   final String postContent;
-  final List<String> images;
+  final List<dynamic> images;
 
   const PostContent({Key? key, required this.postContent, required this.images}) : super(key: key);
 
@@ -26,6 +28,7 @@ class _PostContentState extends State<PostContent> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(widget.postContent,style: theme.textTheme.labelMedium,),
+        addVerticalSpace(5),
         SizedBox(
           width: double.infinity,
           height: 200,

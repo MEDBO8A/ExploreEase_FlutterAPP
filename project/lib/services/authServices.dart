@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -113,12 +114,18 @@ class AuthServices {
           await userCredential.user?.updateDisplayName(name);
           await userCredential.user?.sendEmailVerification();
 
+          Reference ref = FirebaseStorage.instance
+              .ref()
+              .child('guest.png');
+
+          String imageUrl = await ref.getDownloadURL();
+
           UserModel user = UserModel(
             id: userCredential.user!.uid,
             username: name,
             mail: mail,
             password: pass,
-            profPic: "https://shorturl.at/bdNO2",
+            profPic: imageUrl,
             bio: "bio...",
             favorite: [""],
             booked: [""],
