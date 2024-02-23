@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
@@ -112,6 +113,12 @@ class PostHeader extends StatelessWidget{
                   onPressed: () async{
                     await DBServices().deletePost(userID, postTime);
                     Navigator.of(context).pop();
+                    for(var i=0 ; i < images.length ; i++){
+                      await FirebaseStorage.instance
+                          .ref()
+                          .child('post_images')
+                          .child('${userID}_${postTime}_${i}.jpg').delete();
+                    }
                     },
                   child: const Text(
                     "Delete",

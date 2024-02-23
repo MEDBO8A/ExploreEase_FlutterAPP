@@ -171,12 +171,13 @@ class _AddPostScreenState extends State<AddPostScreen>{
                           if (_postController.text.isNotEmpty){
 
                             final List<String> imagesLinks = [];
+                            final date = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
 
                             for(final image in selectedImages){
                               Reference ref = FirebaseStorage.instance
                                   .ref()
                                   .child('post_images')
-                                  .child('${user!.id}_${selectedImages.indexOf(image)}.jpg');
+                                  .child('${user!.id}_${date}_${selectedImages.indexOf(image)}.jpg');
 
                               await ref.putFile(File(image));
 
@@ -190,13 +191,13 @@ class _AddPostScreenState extends State<AddPostScreen>{
                                 "userID": user!.id,
                                 "userName": user!.username,
                                 "userImage": user!.profPic,
-                                "time": DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
+                                "time": date,
                                 "content": _postController.text,
                                 "images": imagesLinks,
                                 "lovesList": [],
                               },
                               user!.id,
-                              DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
+                              date,
                             );
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CommunityChatScreen()));
                           }else{
@@ -312,4 +313,5 @@ class _AddPostScreenState extends State<AddPostScreen>{
         );
       },
     );
-  }}
+  }
+}
