@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project/helping%20widgets/loading_widget.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
 import 'package:project/screens/community_chat_screen.dart';
@@ -186,11 +187,11 @@ class _AddPostScreenState extends State<AddPostScreen>{
                               imagesLinks.add(imageUrl);
                             }
 
+                            loading(context);
+
                             await DBServices().savePost(
                               {
                                 "userID": user!.id,
-                                "userName": user!.username,
-                                "userImage": user!.profPic,
                                 "time": date,
                                 "content": _postController.text,
                                 "images": imagesLinks,

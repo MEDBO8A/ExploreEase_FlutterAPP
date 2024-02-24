@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/services/state.dart';
 import 'package:project/themes/dark_theme.dart';
 import 'package:project/themes/light_theme.dart';
-
+import 'components/popular packages/popular_generator.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getPopular();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,

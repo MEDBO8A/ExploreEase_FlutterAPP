@@ -8,7 +8,6 @@ import '../components/countries/list_countries.dart';
 import '../components/forums/text_fields.dart';
 import '../components/navigationDrawer.dart';
 import '../components/popular packages/list_packages.dart';
-import '../components/popular packages/popular_generator.dart';
 import '../model/user.dart';
 import '../services/auth_services.dart';
 import '../services/database_services.dart';
@@ -29,7 +28,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   void initState() {
     super.initState();
     getUser();
-    getPopular();
   }
 
   Future<void> getUser() async {
@@ -110,7 +108,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           children: [
             addVerticalSpace(10),
             Text(
-              "Hello, ${userdata?.username}",
+              "Hello, ${userdata?.username == null ? "..." : userdata?.username}",
               style: theme.textTheme.titleLarge,
             ),
             Text(

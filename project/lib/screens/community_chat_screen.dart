@@ -78,8 +78,6 @@ class _CommunityChatScreenState extends State<CommunityChatScreen>{
                     padding: const EdgeInsets.only(bottom: 10),
                     child: PostWidget(
                       userID: data["userID"],
-                      userName: data["userName"],
-                      userImage: data["userImage"],
                       postTime: data["time"],
                       postContent: data["content"],
                       lovesList: data["lovesList"],

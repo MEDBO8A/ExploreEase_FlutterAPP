@@ -21,16 +21,10 @@ class PopularPacksList extends StatelessWidget {
         }
 
         final documents = snapshot.data!.docs;
-
-        // Create a list of objects
         List<Map<String, dynamic>> dataList = [];
-
-        // Populate the list with document data
         for (var doc in documents) {
           dataList.add(doc.data()! as Map<String, dynamic>);
         }
-
-        // Sort the list based on the 'rate' attribute in descending order
         dataList.sort((a, b) =>
             (b['rate'] as num).compareTo(a['rate'] as num));
 

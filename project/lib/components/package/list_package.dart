@@ -45,7 +45,7 @@ class _PackagesState extends State<MyPackagesList> {
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.push(
               context,

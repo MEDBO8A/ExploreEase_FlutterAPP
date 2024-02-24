@@ -17,24 +17,26 @@ class PostHeader extends StatelessWidget{
   const PostHeader({super.key, required this.userImage, required this.userName, required this.postTime, required this.userID, required this.images, required this.postContent});
   @override
   Widget build(BuildContext context) {
+
     final date =DateTime.now().toUtc();
     Duration difference = date.difference(DateTime.fromMillisecondsSinceEpoch(postTime * 1000, isUtc: true));
     int hours = difference.inHours;
     int days = difference.inDays;
     int minutes = difference.inMinutes;
-
     UserModel? currentUser = UserModel.current;
-
     final theme = Theme.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
+            userImage.isNotEmpty ?
             CircleAvatar(
               backgroundImage: NetworkImage(userImage),
               radius: 25,
-            ),
+            ) :
+            CircularProgressIndicator(),
             addHorizentalSpace(15),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,

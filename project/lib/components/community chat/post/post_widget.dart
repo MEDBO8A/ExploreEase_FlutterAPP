@@ -4,9 +4,9 @@ import 'package:project/components/community%20chat/post/post_footer.dart';
 import 'package:project/components/community%20chat/post/post_header.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 
+import '../../../services/database_services.dart';
+
 class PostWidget extends StatefulWidget{
-  final String userImage;
-  final String userName;
   final int postTime;
   final String postContent;
   final List<dynamic> lovesList;
@@ -15,8 +15,6 @@ class PostWidget extends StatefulWidget{
 
   const PostWidget({
     super.key,
-    required this.userImage,
-    required this.userName,
     required this.postTime,
     required this.postContent,
     required this.images, required this.userID, required this.lovesList,
@@ -27,6 +25,24 @@ class PostWidget extends StatefulWidget{
   _PostWidgetState createState() => _PostWidgetState();
 }
 class _PostWidgetState extends State<PostWidget>{
+
+  late String userImage = "";
+  late String userName = "";
+
+  getInfo() async{
+    final userRes = await DBServices().getUser(widget.userID);
+    setState(() {
+      userName = userRes!.username;
+      userImage = userRes!.profPic;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +57,7 @@ class _PostWidgetState extends State<PostWidget>{
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          PostHeader(postContent: widget.postContent, images: widget.images, userID: widget.userID, postTime: widget.postTime, userImage: widget.userImage, userName: widget.userName),
+          PostHeader(postContent: widget.postContent, images: widget.images, userID: widget.userID, postTime: widget.postTime, userImage: userImage, userName: userName),
           addVerticalSpace(10),
           PostContent(images: widget.images, postContent: widget.postContent),
           addVerticalSpace(10),

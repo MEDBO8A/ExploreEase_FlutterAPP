@@ -7,6 +7,7 @@ import '../../../model/user.dart';
 import '../../../screens/favorite_screen.dart';
 import '../../../screens/home_screen.dart';
 import '../../../helping widgets/alert_dialog.dart';
+import '../../popular packages/popular_generator.dart';
 import '../../rating_bar.dart';
 import '../list_package.dart';
 
@@ -385,7 +386,7 @@ class _HeaderScreenState extends State<HeaderScreen> {
                         var_rate = newRate;
                         var_rateNB = newNBRate;
                       });
-
+                      getPopular();
                     }
                   },
                   child: const Text(

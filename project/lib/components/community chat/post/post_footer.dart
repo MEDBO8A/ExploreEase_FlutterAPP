@@ -43,9 +43,13 @@ class _PostFooterState extends State<PostFooter> {
             decoration: BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                width: 2,
+                color: widget.lovesList.contains(currentUser!.id) ? theme.colorScheme.onSecondary : Colors.transparent,
+              ),
             ),
-            padding: const EdgeInsets.all(5),
-            child: const Icon(Icons.favorite,color: Colors.white,size: 20,),
+            padding: const EdgeInsets.all(4),
+            child: const Icon(Icons.favorite,color: Colors.white,size: 18,),
           ),
         ),
         Text(" ${widget.lovesList.length}",style: theme.textTheme.labelMedium,),
