@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/package/box_package_widget.dart';
 import '../model/user.dart';
 import '../services/alert_dialog.dart';
+import 'home_screen.dart';
 
 class MyFavoriteScreen extends StatefulWidget {
   const MyFavoriteScreen({super.key});
@@ -40,8 +41,12 @@ class _MyFavoriteScreenState extends State<MyFavoriteScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.pop(context);
-          },
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MyHomeScreen(),
+              ),
+            );          },
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(

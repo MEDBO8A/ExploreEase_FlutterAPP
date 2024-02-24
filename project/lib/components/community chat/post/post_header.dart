@@ -5,8 +5,6 @@ import 'package:project/model/user.dart';
 import 'package:project/screens/Edit_post_screen.dart';
 import 'package:project/services/dataBaseServices.dart';
 
-import '../../../screens/community_chat_screen.dart';
-
 class PostHeader extends StatelessWidget{
   final String userImage;
   final String userName;

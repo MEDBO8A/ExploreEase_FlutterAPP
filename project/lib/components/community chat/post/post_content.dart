@@ -1,9 +1,5 @@
-import 'dart:ffi';
-import 'dart:io';
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:galleryimage/galleryimage.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';

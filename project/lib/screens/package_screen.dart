@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import '../components/package/package screen components/buttom_widget.dart';
 import '../components/package/package screen components/header_screen_widget.dart';
+import '../components/package/package screen components/map_widget.dart';
 import '../components/package/package screen components/overview_widget.dart';
 import '../model/user.dart';
 
@@ -115,7 +116,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
                       ),
                       addVerticalSpace(10),
                       // Content based on the selected index
-                      selectedIndex == 0 ? overviewWidget(context,placeCoords,widget.placeID) : mapWidget(),
+                      selectedIndex == 0 ? overviewWidget(context,placeCoords,widget.placeID) : mapWidget(context,placeCoords),
                     ],
                   ),
                 ],
@@ -161,33 +162,5 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
     );
   }
 
-  late GoogleMapController mapController;
-  Container mapWidget() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.all(5),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.5,
-      child: GoogleMap(
-        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-          Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
-        ].toSet(),
-        onMapCreated: (controller) {
-          mapController = controller;
-        },
-        initialCameraPosition: CameraPosition(
-          target: placeCoords,
-          zoom: 11.5,
-        ),
-        markers: {
-          Marker(
-            markerId: const MarkerId("Source"),
-            position: placeCoords,
-          ),
-        },
-      ),
-    );
-  }
+
 }

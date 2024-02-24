@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project/components/package/package%20screen%20components/package_online_details.dart';
-import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
 import 'package:project/screens/add_post_screen.dart';
-
 import '../components/community chat/post/post_widget.dart';
 import '../services/alert_dialog.dart';
 import 'home_screen.dart';
