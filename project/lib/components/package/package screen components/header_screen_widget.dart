@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/helping%20widgets/loading_image.dart';
 import '../../../helping widgets/sizedbox_widget.dart';
 import '../../../model/user.dart';
 import '../../../screens/favorite_screen.dart';
 import '../../../screens/home_screen.dart';
-import '../../../services/alert_dialog.dart';
+import '../../../helping widgets/alert_dialog.dart';
 import '../../rating_bar.dart';
 import '../list_package.dart';
 
@@ -84,11 +85,10 @@ class _HeaderScreenState extends State<HeaderScreen> {
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30),
               ),
-              child: Image.network(
-                widget.image,
-                fit: BoxFit.cover,
-                height: screenHeight * 0.40,
-                width: screenWidth,
+              child: ImageWithLoadingIndicator(
+                  imageUrl: widget.image,
+                  width: screenWidth,
+                  height: screenHeight * 0.4
               ),
             ),
             Positioned(

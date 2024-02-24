@@ -6,8 +6,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/screens/email_verification_screen.dart';
 import '../model/user.dart';
 import '../screens/home_screen.dart';
-import 'alert_dialog.dart';
-import 'dataBaseServices.dart';
+import '../helping widgets/alert_dialog.dart';
+import 'database_services.dart';
 
 class AuthServices {
   FirebaseAuth auth = FirebaseAuth.instance;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
 import 'package:project/screens/Edit_post_screen.dart';
-import 'package:project/services/dataBaseServices.dart';
+import 'package:project/services/database_services.dart';
 
 class PostHeader extends StatelessWidget{
   final String userImage;

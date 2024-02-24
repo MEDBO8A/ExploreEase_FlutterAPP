@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/package_screen.dart';
+import '../../helping widgets/loading_image.dart';
 import '../../model/user.dart';
 
 class PackageBox extends StatefulWidget {
@@ -91,11 +92,10 @@ class _PackageBoxState extends State<PackageBox> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    widget.image,
-                    width: screenWidth * 0.97,
-                    height: screenHeight * 0.2,
-                    fit: BoxFit.cover,
+                  child: ImageWithLoadingIndicator(
+                      imageUrl: widget.image,
+                      width: screenWidth * 0.97,
+                      height: screenHeight * 0.2
                   ),
                 ),
                 Positioned(

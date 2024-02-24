@@ -6,7 +6,7 @@ import '../model/user.dart';
 import '../screens/community_chat_screen.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/profile_screen.dart';
-import '../services/authServices.dart';
+import '../services/auth_services.dart';
 
 class NavigationDrawerBar extends StatelessWidget {
   NavigationDrawerBar({super.key,});

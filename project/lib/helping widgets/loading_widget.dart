@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-Future loading(BuildContext context) {
+loading(BuildContext context) {
   return showDialog(
     context: context,
     barrierDismissible: false,

@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/profile_screen.dart';
 import 'package:project/screens/sign_in_screen.dart';
-
-import '../components/categories/box_categorie_widget.dart';
 import '../components/categories/list_categories.dart';
-import '../components/countries/collections_sizes_generator.dart';
 import '../components/countries/list_countries.dart';
 import '../components/forums/text_fields.dart';
 import '../components/navigationDrawer.dart';
 import '../components/popular packages/list_packages.dart';
 import '../components/popular packages/popular_generator.dart';
 import '../model/user.dart';
-import '../services/authServices.dart';
-import '../services/dataBaseServices.dart';
+import '../services/auth_services.dart';
+import '../services/database_services.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({super.key});
@@ -91,7 +88,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               child: CircleAvatar(
                 radius: 20,
                 backgroundImage:
-                userdata != null ? NetworkImage(userdata!.profPic) : null,
+                userdata != null ? NetworkImage(userdata!.profPic,) : null,
               ),
               onTap: () {
                 Navigator.of(context).push(

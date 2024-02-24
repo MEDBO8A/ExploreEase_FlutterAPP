@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../components/package/box_package_widget.dart';
 import '../model/user.dart';
-import '../services/alert_dialog.dart';
+import '../helping widgets/alert_dialog.dart';
 import 'home_screen.dart';
 
 class MyFavoriteScreen extends StatefulWidget {

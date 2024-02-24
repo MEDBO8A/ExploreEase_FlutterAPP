@@ -5,8 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
 import 'package:project/screens/community_chat_screen.dart';
-import 'package:project/services/alert_dialog.dart';
-import 'package:project/services/dataBaseServices.dart';
+import 'package:project/helping%20widgets/alert_dialog.dart';
+import 'package:project/services/database_services.dart';
 
 class AddPostScreen extends StatefulWidget{
   const AddPostScreen({super.key});

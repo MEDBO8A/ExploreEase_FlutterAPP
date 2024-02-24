@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/services/authServices.dart';
+import 'package:project/services/auth_services.dart';
 
 class GoogleButtonWidget extends StatelessWidget{
   final auth = AuthServices();

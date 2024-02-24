@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/package_screen.dart';
 
+import '../../helping widgets/loading_image.dart';
+
 class PopularPackageBox extends StatelessWidget {
   final String placeID;
   final String name;
@@ -59,11 +61,10 @@ class PopularPackageBox extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                image,
-                width: screenWidth * 0.25,
-                height: screenHeight * 0.15,
-                fit: BoxFit.cover,
+              child: ImageWithLoadingIndicator(
+                  imageUrl: image,
+                  width: screenWidth * 0.25,
+                  height: screenHeight * 0.15
               ),
             ),
             addHorizentalSpace(5),

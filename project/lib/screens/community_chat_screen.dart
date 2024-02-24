@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
 import 'package:project/screens/add_post_screen.dart';
 import '../components/community chat/post/post_widget.dart';
-import '../services/alert_dialog.dart';
+import '../helping widgets/alert_dialog.dart';
 import 'home_screen.dart';
 
 class CommunityChatScreen extends StatefulWidget{

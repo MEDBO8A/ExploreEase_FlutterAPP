@@ -8,7 +8,7 @@ import 'package:project/screens/home_screen.dart';
 import '../components/loading_widget.dart';
 import '../helping widgets/sizedbox_widget.dart';
 import '../model/user.dart';
-import '../services/dataBaseServices.dart';
+import '../services/database_services.dart';
 
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});

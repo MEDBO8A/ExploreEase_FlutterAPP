@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/services/dataBaseServices.dart';
+import 'package:project/services/database_services.dart';
 import '../../../model/user.dart';
 
 class PostFooter extends StatefulWidget {

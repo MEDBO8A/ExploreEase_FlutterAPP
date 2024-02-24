@@ -4,7 +4,7 @@ import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/sign_in_screen.dart';
 import '../components/sign in&up components/buttons.dart';
 import '../components/forums/text_fields.dart';
-import '../services/authServices.dart';
+import '../services/auth_services.dart';
 
 class MySignUpScreen extends StatefulWidget {
   const MySignUpScreen({super.key});

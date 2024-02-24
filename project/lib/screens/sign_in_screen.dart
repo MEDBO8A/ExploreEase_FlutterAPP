@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/password_reset_screen.dart';
 import 'package:project/screens/sign_up_screen.dart';
-import 'package:project/services/authServices.dart';
+import 'package:project/services/auth_services.dart';
 import '../components/sign in&up components/buttons.dart';
 import '../components/forums/text_fields.dart';
 
