@@ -110,7 +110,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            addVerticalSpace(10),
+            addVerticalSpace(screenHeight * 0.025),
             Text(
               "Hello, ${userdata?.username == null ? "..." : userdata?.username}",
               style: theme.textTheme.titleLarge,
@@ -119,9 +119,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               "Explore the beauty of the world ",
               style: theme.textTheme.bodyLarge,
             ),
-            addVerticalSpace(40),
-            const MySearchTextField(),
-            addVerticalSpace(30),
+            addVerticalSpace(screenHeight * 0.04),
             Text(
               "Categories",
               style: theme.textTheme.titleMedium?.copyWith(
@@ -129,9 +127,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 letterSpacing: 2
               ),
             ),
-            addVerticalSpace(15),
+            addVerticalSpace(screenHeight * 0.02),
             const CategoriesList(),
-            addVerticalSpace(30),
+            addVerticalSpace(screenHeight * 0.04),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -154,9 +152,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 ),
               ],
             ),
-            addVerticalSpace(10),
+            addVerticalSpace(screenHeight * 0.02),
             CountriesList(show: show),
-            addVerticalSpace(30),
+            addVerticalSpace(screenHeight * 0.04),
             Text(
               "Popular",
               style: theme.textTheme.titleMedium?.copyWith(
@@ -164,7 +162,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                   letterSpacing: 2
               ),
             ),
-            addVerticalSpace(10),
+            addVerticalSpace(screenHeight * 0.02),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.98,
               height: MediaQuery.of(context).size.height * 0.11,

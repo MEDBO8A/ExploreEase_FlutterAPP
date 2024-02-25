@@ -95,7 +95,7 @@ class _CommunityChatScreenState extends State<CommunityChatScreen>{
         },
       ),
       floatingActionButton: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.3,
+        width: MediaQuery.of(context).size.width * 0.33,
         child: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPostScreen(),),);

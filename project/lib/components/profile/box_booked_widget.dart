@@ -46,27 +46,27 @@ class _BookedPackageBoxState extends State<BookedPackageBox> {
     final themeColors = Theme.of(context).colorScheme;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        margin: EdgeInsets.only(bottom: 10),
-        height: 110,
-        width: screenWidth * 0.95,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: themeColors.background,
-        ),
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      height: 110,
+      width: screenWidth * 0.95,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: themeColors.background,
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: ImageWithLoadingIndicator(
                   imageUrl: widget.image,
                   width: screenWidth * 0.25,
-                  height: screenHeight * 0.15
+                  height: 110,
               ),
             ),
+            addHorizentalSpace(5),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

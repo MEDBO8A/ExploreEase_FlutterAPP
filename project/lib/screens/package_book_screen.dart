@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/components/forums/booking_text_fields.dart';
 import 'package:project/components/sign%20in&up%20components/buttons.dart';
 import 'package:project/helping%20widgets/alert_dialog.dart';
+import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/model/user.dart';
 import '../helping widgets/connection_alerts.dart';
 import '../services/connectivity_services.dart';
@@ -80,106 +81,113 @@ class _MyBookingScreenState extends State<MyBookingScreen> {
           },
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,vertical: screenHeight * 0.025),
-          child: Column(
-            children: [
-
-              Text(
-                "Fill this fields with your information.",
-                style: theme.textTheme.titleMedium,
-              ),
-              Text(
-                " And we will contact you.",
-                style: theme.textTheme.titleMedium,
-              ),
-              MyFNameTextField(controller: _firstName, error: fNameError,),
-              MyLNameTextField(controller: _lastName, error: lNameError,),
-              MyNumTextField(controller: _num, error: numError),
-              MainButtonWidget(
-                content: "Book Now",
-                onPressed: () async{
-                  _validateInputs();
-                  if (fNameError == null && lNameError == null && numError == null){
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: themeColors.background,
-                          content: Text(
-                            "Confirme to book the ${widget.placeID} package",
-                            style: TextStyle(
-                              color: themeColors.surface,
-                              fontSize: 18,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,vertical: screenHeight * 0.025),
+            child: Column(
+              children: [
+                addVerticalSpace(screenHeight * 0.04),
+                Text(
+                  "Fill this fields.",
+                  style: theme.textTheme.titleMedium,
+                ),
+                Text(
+                  " And we will contact you.",
+                  style: theme.textTheme.titleMedium,
+                ),
+                addVerticalSpace(screenHeight * 0.04),
+                MyFNameTextField(controller: _firstName, error: fNameError,),
+                addVerticalSpace(screenHeight * 0.04),
+                MyLNameTextField(controller: _lastName, error: lNameError,),
+                addVerticalSpace(screenHeight * 0.04),
+                MyNumTextField(controller: _num, error: numError),
+                addVerticalSpace(screenHeight * 0.06),
+                MainButtonWidget(
+                  content: "Book Now",
+                  onPressed: () async{
+                    _validateInputs();
+                    if (fNameError == null && lNameError == null && numError == null){
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: themeColors.background,
+                            content: Text(
+                              "Confirme to book the ${widget.placeID} package",
+                              style: TextStyle(
+                                color: themeColors.surface,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                          actions: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: themeColors.primary,
-                                  ),
-                                  onPressed: () async{
-                                    final isConnected = await ConnectivityServices().getConnectivity();
-                                    if (isConnected) {
-                                      setState(() {
-                                        currentUser!.booked!.add(widget.placeID);
-                                      });
-                                      await userColl.doc(currentUser!.id).update({
-                                        "booked": currentUser!.booked
-                                      });
-                                      await bookedColl.doc("${currentUser!.id}_${widget.placeID}").set(
-                                          {
-                                            "userID": currentUser!.id,
-                                            "placeID": widget.placeID,
-                                            "firstName": _firstName.text,
-                                            "lastName": _lastName.text,
-                                            "phone": _num.text,
-                                            "date": DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
-                                          }
-                                      );
-                                      Navigator.of(context).pop();
-                                      Navigator.of(context).pop();
-                                      showSuccessAlert(context, "Package is booked succussfully");
-                                    }else {
-                                      NoConnectionAlert(context);
-                                    }},
-                                  child: const Text(
-                                    "Book",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
+                            actions: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: themeColors.primary,
+                                    ),
+                                    onPressed: () async{
+                                      final isConnected = await ConnectivityServices().getConnectivity();
+                                      if (isConnected) {
+                                        setState(() {
+                                          currentUser!.booked!.add(widget.placeID);
+                                        });
+                                        await userColl.doc(currentUser!.id).update({
+                                          "booked": currentUser!.booked
+                                        });
+                                        await bookedColl.doc("${currentUser!.id}_${widget.placeID}").set(
+                                            {
+                                              "userID": currentUser!.id,
+                                              "placeID": widget.placeID,
+                                              "firstName": _firstName.text,
+                                              "lastName": _lastName.text,
+                                              "phone": _num.text,
+                                              "date": DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
+                                            }
+                                        );
+                                        Navigator.of(context).pop();
+                                        Navigator.of(context).pop();
+                                        showSuccessAlert(context, "Package is booked succussfully");
+                                      }else {
+                                        NoConnectionAlert(context);
+                                      }},
+                                    child: const Text(
+                                      "Book",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: themeColors.onSecondary,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: themeColors.onSecondary,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text(
+                                      "Cancel",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ],
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

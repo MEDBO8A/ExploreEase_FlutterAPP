@@ -106,7 +106,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ),
                         child: Icon(
                           Icons.camera_alt,
-                          color: themeColors.surface,
+                          color: Colors.white,
                           size: 15,
                         ),
                       ),
@@ -132,7 +132,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       onPressed: () async{
                         final isConnected = await ConnectivityServices().getConnectivity();
                         if (isConnected) {
-                          showEditField(context, "username");
+                          showEditField(context, "username",user!.username);
 
                         }else {
                           NoConnectionAlert(context);
@@ -163,7 +163,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         onPressed: () async{
                           final isConnected = await ConnectivityServices().getConnectivity();
                           if (isConnected) {
-                            showEditField(context, "bio");
+                            showEditField(context, "bio", user!.bio);
 
                           }else {
                             NoConnectionAlert(context);
@@ -247,9 +247,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   }
 
-  Future showEditField(BuildContext context, String field) async {
+  Future showEditField(BuildContext context, String field, String oldValue) async {
     final themeColors = Theme.of(context).colorScheme;
     TextEditingController textController = TextEditingController();
+    textController.text = oldValue;
     String newValue = "";
 
     await showDialog(
@@ -258,6 +259,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         title: Text("Edit $field"),
         content: TextField(
           controller: textController,
+          autofocus: true,
           onChanged: (e) {
             newValue = e;
           },

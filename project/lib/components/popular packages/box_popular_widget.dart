@@ -59,7 +59,7 @@ class PopularPackageBox extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(right: 15),
         padding: const EdgeInsets.only(right: 10),
-        height: screenHeight * 0.15,
+        height: screenHeight * 0.17,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: themeColors.onBackground,
@@ -71,7 +71,7 @@ class PopularPackageBox extends StatelessWidget {
               child: ImageWithLoadingIndicator(
                   imageUrl: image,
                   width: screenWidth * 0.25,
-                  height: screenHeight * 0.15
+                  height: screenHeight * 0.17
               ),
             ),
             addHorizentalSpace(5),
