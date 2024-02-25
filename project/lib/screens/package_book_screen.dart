@@ -4,9 +4,7 @@ import 'package:project/components/forums/booking_text_fields.dart';
 import 'package:project/components/sign%20in&up%20components/buttons.dart';
 import 'package:project/helping%20widgets/alert_dialog.dart';
 import 'package:project/model/user.dart';
-
 import '../helping widgets/connection_alerts.dart';
-import '../helping widgets/loading_image.dart';
 import '../services/connectivity_services.dart';
 
 class MyBookingScreen extends StatefulWidget {
