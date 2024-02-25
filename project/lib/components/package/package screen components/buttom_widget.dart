@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../helping widgets/connection_alerts.dart';
+import '../../../services/connectivity_services.dart';
+
 Container bottomWidget(BuildContext context, dynamic price) {
   final theme = Theme.of(context);
   final themeColors = Theme.of(context).colorScheme;
@@ -33,13 +36,20 @@ Container bottomWidget(BuildContext context, dynamic price) {
         ),
         GestureDetector(
           onTap: () {
-            /*
+            ConnectivityServices().getConnectivity().then((value) {
+              if (value){
+                /*
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => MyBookPackage(),
                 ),
               );
                */
+              }else{
+                NoConnectionAlert(context);
+              }
+            });
+
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 15),

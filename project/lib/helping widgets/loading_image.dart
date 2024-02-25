@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageWithLoadingIndicator extends StatefulWidget {
@@ -16,31 +17,21 @@ class _ImageWithLoadingIndicatorState extends State<ImageWithLoadingIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Image.network(
-          widget.imageUrl,
-          fit: BoxFit.cover,
-          height: widget.height,
+    return CachedNetworkImage(
+      imageUrl: widget.imageUrl,
+      placeholder: (context, uri) => CircularProgressIndicator(),
+      imageBuilder: (context, imageProvider){
+        return Container(
           width: widget.width,
-          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) {
-              _isLoading = false;
-              return child;
-            } else {
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
-                  ),
-                ),
-              );
-            }
-          },
-        ),
-      ],
+          height: widget.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.fill,
+            ),
+          ),
+        );
+      },
     );
   }
 }

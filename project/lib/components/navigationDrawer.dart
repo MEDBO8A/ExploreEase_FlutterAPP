@@ -2,16 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/screens/sign_in_screen.dart';
 
+import '../helping widgets/connection_alerts.dart';
 import '../model/user.dart';
 import '../screens/community_chat_screen.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/profile_screen.dart';
 import '../services/auth_services.dart';
+import '../services/connectivity_services.dart';
 
-class NavigationDrawerBar extends StatelessWidget {
+class NavigationDrawerBar extends StatefulWidget {
   NavigationDrawerBar({super.key,});
+
+  @override
+  State<NavigationDrawerBar> createState() => _NavigationDrawerBarState();
+}
+
+class _NavigationDrawerBarState extends State<NavigationDrawerBar> {
   AuthServices auth = AuthServices();
+
   UserModel? user = UserModel.current;
+
+  bool isConnected = true;
+
+  @override
+  void initState() {
+    super.initState();
+    ConnectivityServices().getConnectivity().then((value) {
+      setState(() {
+        isConnected = value;
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +50,14 @@ class NavigationDrawerBar extends StatelessWidget {
                   children: [
                     Column(
                       children: [
+                        isConnected?
                         CircleAvatar(
                           radius: 35,
                           backgroundImage: user != null
                               ? NetworkImage(user!.profPic)
                               : null,
-                        ),
+                        ):
+                            Icon(Icons.error,color: themeColors.error,size: 50,),
                         const SizedBox(
                           height: 15,
                         ),
@@ -83,12 +107,17 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const MyProfileScreen(),
-                          ),
-                        );
+                      onTap: () async{
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyProfileScreen(),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
                       },
                     ),
                     ListTile(
@@ -104,13 +133,17 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
-                      onTap: () {
-
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const MyFavoriteScreen(),
-                          ),
-                        );
+                      onTap: () async{
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyFavoriteScreen(),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
                       },
                     ),
                     ListTile(
@@ -126,13 +159,17 @@ class NavigationDrawerBar extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
-                      onTap: () {
-
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const CommunityChatScreen(),
-                          ),
-                        );
+                      onTap: () async{
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const CommunityChatScreen(),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
                       },
                     ),
                   ],

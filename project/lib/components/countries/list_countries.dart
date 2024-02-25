@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/connection_alerts.dart';
 import '../../helping widgets/sizedbox_widget.dart';
+import '../../services/connectivity_services.dart';
 import '../package/list_package.dart';
 import 'box_country_widget.dart';
 
-class CountriesList extends StatelessWidget {
+class CountriesList extends StatefulWidget {
   final bool show;
 
   const CountriesList({super.key, required this.show});
+
+  @override
+  State<CountriesList> createState() => _CountriesListState();
+}
+
+class _CountriesListState extends State<CountriesList> {
+
+  bool isConnected = true;
+
+  @override
+  void initState() {
+    super.initState();
+    ConnectivityServices().getConnectivity().then((value) {
+      setState(() {
+        isConnected = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,112 +38,144 @@ class CountriesList extends StatelessWidget {
           CountryBox(
             country: "Tunisia",
             image: "assets/images/countries/tunisie.png",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Tunisia"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Tunisia"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CountryBox(
             country: "Spain",
             image: "assets/images/countries/spain.png",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Spain"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Spain"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CountryBox(
             country: "Italy",
             image: "assets/images/countries/italy.png",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Italy"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Italy"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CountryBox(
             country: "Greece",
             image: "assets/images/countries/greece.png",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Greece"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Greece"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
-          if (show)
-            (Row(
-              children: [
-                CountryBox(
-                  country: "U A E",
-                  image: "assets/images/countries/UAE.png",
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const MyPackagesList(value: "U.A.E"),
-                      ),
-                    );
-                  },
-                ),
-                addHorizentalSpace(10),
-                CountryBox(
-                  country: "Australia",
-                  image: "assets/images/countries/australia.png",
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const MyPackagesList(value: "Australia"),
-                      ),
-                    );
-                  },
-                ),
-                addHorizentalSpace(10),
-                CountryBox(
-                  country: "Croatia",
-                  image: "assets/images/countries/croatia.png",
-                  onTap: () {
-
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const MyPackagesList(value: "Croatia"),
-                      ),
-                    );
-                  },
-                ),
-                addHorizentalSpace(10),
-                CountryBox(
-                  country: "Turkey",
-                  image: "assets/images/countries/turkey.png",
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const MyPackagesList(value: "Turkey"),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            )
+          if (widget.show)
+            (
+                Row(
+                  children: [
+                    CountryBox(
+                      country: "U A E",
+                      image: "assets/images/countries/UAE.png",
+                      onTap: () async {
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyPackagesList(value: "U.A.E"),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
+                      },
+                    ),
+                    addHorizentalSpace(10),
+                    CountryBox(
+                      country: "Australia",
+                      image: "assets/images/countries/australia.png",
+                      onTap: () async {
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyPackagesList(value: "Australia"),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
+                      },
+                    ),
+                    addHorizentalSpace(10),
+                    CountryBox(
+                      country: "Croatia",
+                      image: "assets/images/countries/croatia.png",
+                      onTap: () async {
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyPackagesList(value: "Croatia"),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
+                      },
+                    ),
+                    addHorizentalSpace(10),
+                    CountryBox(
+                      country: "Turkey",
+                      image: "assets/images/countries/turkey.png",
+                      onTap: () async{
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyPackagesList(value: "Turkey"),
+                            ),
+                          );
+                        } else {
+                          NoConnectionAlert(context);
+                        }
+                      },
+                    ),
+                  ],
+                )
             ),
         ],
       ),

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:project/screens/home_screen.dart';
-
-import '../components/loading_widget.dart';
+import '../helping widgets/loading_widget.dart';
 import '../helping widgets/sizedbox_widget.dart';
 import '../model/user.dart';
 import '../services/database_services.dart';

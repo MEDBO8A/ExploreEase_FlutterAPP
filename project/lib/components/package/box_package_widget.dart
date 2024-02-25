@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/connection_alerts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/package_screen.dart';
 import '../../helping widgets/loading_image.dart';
 import '../../model/user.dart';
+import '../../services/connectivity_services.dart';
 
 class PackageBox extends StatefulWidget {
   final int page;
@@ -52,22 +54,28 @@ class _PackageBoxState extends State<PackageBox> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {
+      onTap: () async{
+      final isConnected = await ConnectivityServices().getConnectivity();
+      if (isConnected) {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => MyPackageScreen(
-              page: widget.page,
-              placeID: widget.placeID,
-              city: widget.city,
-              country: widget.country,
-              image: widget.image,
-              name: widget.name,
-              rate: widget.rate,
-              rateNB: widget.rateNB,
-              price: widget.price,
-            ),
+            builder: (context) =>
+                MyPackageScreen(
+                  page: widget.page,
+                  placeID: widget.placeID,
+                  city: widget.city,
+                  country: widget.country,
+                  image: widget.image,
+                  name: widget.name,
+                  rate: widget.rate,
+                  rateNB: widget.rateNB,
+                  price: widget.price,
+                ),
           ),
         );
+      }else {
+        NoConnectionAlert(context);
+      }
       },
       child: Container(
         margin: const EdgeInsets.all(7),
@@ -108,19 +116,26 @@ class _PackageBoxState extends State<PackageBox> {
                     ),
                     child: IconButton(
                       onPressed: () async{
-                        if (currentUser!.favorite!.contains(widget.placeID)) {
-                          setState(() {
-                            currentUser!.favorite!.remove(widget.placeID);
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
+                          if (currentUser!.favorite!.contains(widget.placeID)) {
+                            setState(() {
+                              currentUser!.favorite!.remove(widget.placeID);
+                            });
+                          } else {
+                            setState(() {
+                              currentUser!.favorite!.add(widget.placeID);
+                            });
+                          }
+
+                          await userColl.doc(currentUser!.id).update({
+                            "favorite": currentUser!.favorite
                           });
-                        } else {
-                          setState(() {
-                            currentUser!.favorite!.add(widget.placeID);
-                          });
+
+                          widget.onFavoriteChanged?.call();
+                        }else{
+                          NoConnectionAlert(context);
                         }
-
-                        await userColl.doc(currentUser!.id).update({"favorite":currentUser!.favorite});
-
-                        widget.onFavoriteChanged?.call();
                       },
                       icon: Icon(
                         Icons.favorite,

@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/connection_alerts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/profile_screen.dart';
-import 'package:project/screens/sign_in_screen.dart';
+import 'package:project/services/connectivity_services.dart';
 import '../components/categories/list_categories.dart';
 import '../components/countries/list_countries.dart';
 import '../components/forums/text_fields.dart';
@@ -24,10 +25,17 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   UserModel? userdata;
   bool show = false;
 
+  bool isConnected = true;
+
   @override
   void initState() {
     super.initState();
     getUser();
+    ConnectivityServices().getConnectivity().then((value) {
+      setState(() {
+        isConnected = value;
+      });
+    });
   }
 
   Future<void> getUser() async {
@@ -68,25 +76,21 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           ),
         ),
         actions: [
-          IconButton(
-              onPressed: () async {
-                await auth.signOut();
-                Navigator.of(context).pop();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => MySignInScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.arrow_back),
-              ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: GestureDetector(
-              child: CircleAvatar(
+              child: isConnected?
+              CircleAvatar(
                 radius: 20,
                 backgroundImage:
-                userdata != null ? NetworkImage(userdata!.profPic,) : null,
+                userdata != null ?
+                NetworkImage(userdata!.profPic,) :
+                null,
+              ):
+              Icon(
+                Icons.error,
+                color: themeColors.error,
+                size: 30,
               ),
               onTap: () {
                 Navigator.of(context).push(
@@ -164,7 +168,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.98,
               height: MediaQuery.of(context).size.height * 0.11,
-              child: const PopularPacksList(),
+              child: isConnected?
+              const PopularPacksList():
+                  const NoConnectionRow(),
             ),
           ],
         ),

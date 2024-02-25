@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project/helping%20widgets/connection_alerts.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import '../components/package/package screen components/buttom_widget.dart';
 import '../components/package/package screen components/header_screen_widget.dart';
 import '../components/package/package screen components/map_widget.dart';
 import '../components/package/package screen components/overview_widget.dart';
 import '../model/user.dart';
+import '../services/connectivity_services.dart';
 
 class MyPackageScreen extends StatefulWidget {
   final int page;
@@ -52,11 +54,17 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
     });
   }
 
+  bool isConnected = true;
 
   @override
   void initState() {
     super.initState();
     getLongLat();
+    ConnectivityServices().getConnectivity().then((value) {
+      setState(() {
+        isConnected = value;
+      });
+    });
   }
 
   @override
@@ -96,8 +104,14 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              setState(() {
-                                selectedIndex = 0;
+                              ConnectivityServices().getConnectivity().then((value) {
+                                if (value){
+                                  setState(() {
+                                    selectedIndex = 0;
+                                  });
+                                }else{
+                                  NoConnectionAlert(context);
+                                }
                               });
                             },
                             splashColor: Colors.transparent,
@@ -105,8 +119,14 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              setState(() {
-                                selectedIndex = 1;
+                              ConnectivityServices().getConnectivity().then((value) {
+                                if (value){
+                                  setState(() {
+                                    selectedIndex = 1;
+                                  });
+                                }else{
+                                  NoConnectionAlert(context);
+                                }
                               });
                             },
                             splashColor: Colors.transparent,
@@ -116,7 +136,11 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
                       ),
                       addVerticalSpace(10),
                       // Content based on the selected index
-                      selectedIndex == 0 ? overviewWidget(context,placeCoords,widget.placeID) : mapWidget(context,placeCoords),
+                      isConnected ?
+                        selectedIndex == 0 ?
+                          overviewWidget(context,placeCoords,widget.placeID) :
+                            mapWidget(context,placeCoords):
+                          const NoConnectionRow(),
                     ],
                   ),
                 ],

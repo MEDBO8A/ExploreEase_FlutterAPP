@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/connection_alerts.dart';
 import '../../helping widgets/sizedbox_widget.dart';
+import '../../services/connectivity_services.dart';
 import '../package/list_package.dart';
 import 'box_categorie_widget.dart';
 
-class CategoriesList extends StatelessWidget {
+class CategoriesList extends StatefulWidget {
   const CategoriesList({super.key});
 
+  @override
+  State<CategoriesList> createState() => _CategoriesListState();
+}
+
+class _CategoriesListState extends State<CategoriesList> {
+
+  bool isConnected = true;
+
+  @override
+  void initState() {
+    super.initState();
+    ConnectivityServices().getConnectivity().then((value) {
+      setState(() {
+        isConnected = value;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -16,68 +35,88 @@ class CategoriesList extends StatelessWidget {
           CategorieBox(
             name: "Island",
             image: "assets/images/categories/island.jpg",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Island"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Island"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CategorieBox(
             name: "Desert",
             image: "assets/images/categories/desert.jpg",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Desert"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Desert"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CategorieBox(
             name: "Mount",
             image: "assets/images/categories/mount.jpg",
-            onTap: () {
-
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Mount"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Mount"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CategorieBox(
             name: "Historic",
             image: "assets/images/categories/historic.jpg",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Historic"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Historic"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
           addHorizentalSpace(10),
           CategorieBox(
             name: "Beach",
             image: "assets/images/categories/beach.jpeg",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const MyPackagesList(value: "Beach"),
-                ),
-              );
+            onTap: () async {
+              final isConnected = await ConnectivityServices().getConnectivity();
+              if (isConnected) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyPackagesList(value: "Beach"),
+                  ),
+                );
+              } else {
+                NoConnectionAlert(context);
+              }
             },
           ),
+
         ],
       ),
     );

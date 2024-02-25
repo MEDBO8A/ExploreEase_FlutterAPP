@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/helping%20widgets/loading_image.dart';
+import '../../../helping widgets/connection_alerts.dart';
 import '../../../helping widgets/sizedbox_widget.dart';
 import '../../../model/user.dart';
 import '../../../screens/favorite_screen.dart';
 import '../../../screens/home_screen.dart';
 import '../../../helping widgets/alert_dialog.dart';
+import '../../../services/connectivity_services.dart';
 import '../../popular packages/popular_generator.dart';
 import '../../rating_bar.dart';
 import '../list_package.dart';
@@ -55,6 +57,8 @@ class _HeaderScreenState extends State<HeaderScreen> {
     });
   }
 
+
+
   @override
   void initState() {
     super.initState();
@@ -102,16 +106,22 @@ class _HeaderScreenState extends State<HeaderScreen> {
                 ),
                 child: IconButton(
                   onPressed: () {
-                    if (currentUser.favorite!.contains(widget.placeID)) {
-                      currentUser.favorite!.remove(widget.placeID);
-                    } else {
-                      currentUser.favorite!.add(widget.placeID);
-                    }
-                    setState(() {
-                      currentUser;
-                    });
-                    userColl.doc(currentUser.id).update({
-                      "favorite": currentUser.favorite,
+                    ConnectivityServices().getConnectivity().then((value) {
+                      if (value){
+                        if (currentUser.favorite!.contains(widget.placeID)) {
+                          currentUser.favorite!.remove(widget.placeID);
+                        } else {
+                          currentUser.favorite!.add(widget.placeID);
+                        }
+                        setState(() {
+                          currentUser;
+                        });
+                        userColl.doc(currentUser.id).update({
+                          "favorite": currentUser.favorite,
+                        });
+                      }else{
+                        NoConnectionAlert(context);
+                      }
                     });
                   },
                   icon: Icon(
@@ -201,10 +211,16 @@ class _HeaderScreenState extends State<HeaderScreen> {
                 ),
                 child: IconButton(
                   onPressed: () async {
-                    userRatedPack
-                        ? showSuccessAlert(
-                        context, "You have already rated this package.")
-                        : showRatingDialog();
+                    ConnectivityServices().getConnectivity().then((value) {
+                      if (value){
+                        userRatedPack
+                            ? showSuccessAlert(
+                            context, "You have already rated this package.")
+                            : showRatingDialog();
+                      }else{
+                        NoConnectionAlert(context);
+                      }
+                    });
                   },
                   icon: Icon(
                     Icons.star_rate_rounded,
