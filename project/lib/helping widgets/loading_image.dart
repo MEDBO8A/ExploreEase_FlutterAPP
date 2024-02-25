@@ -34,7 +34,7 @@ class _ImageWithLoadingIndicatorState extends State<ImageWithLoadingIndicator> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
         );

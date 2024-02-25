@@ -169,6 +169,7 @@ class _AddPostScreenState extends State<AddPostScreen>{
                           backgroundColor: themeColors.primary,
                         ),
                         onPressed: () async{
+                          loading(context);
                           if (_postController.text.isNotEmpty){
 
                             final List<String> imagesLinks = [];
