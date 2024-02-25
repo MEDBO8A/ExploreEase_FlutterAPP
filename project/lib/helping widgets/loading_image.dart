@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class ImageWithLoadingIndicator extends StatefulWidget {
   final String imageUrl;
@@ -19,7 +20,13 @@ class _ImageWithLoadingIndicatorState extends State<ImageWithLoadingIndicator> {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: widget.imageUrl,
-      placeholder: (context, uri) => CircularProgressIndicator(),
+      cacheManager: CacheManager(
+          Config(
+              'customCacheKey',
+              stalePeriod: const Duration(days: 7)
+          )
+      ),
+      placeholder: (context, uri) => const CircularProgressIndicator(),
       imageBuilder: (context, imageProvider){
         return Container(
           width: widget.width,

@@ -54,76 +54,95 @@ class _BookedPackageBoxState extends State<BookedPackageBox> {
         borderRadius: BorderRadius.circular(20),
         color: themeColors.background,
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+      child: SizedBox(
+        width: screenWidth * 0.95,
         child: Row(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: ImageWithLoadingIndicator(
                   imageUrl: widget.image,
-                  width: screenWidth * 0.25,
+                  width: screenWidth * 0.3,
                   height: 110,
               ),
             ),
-            addHorizentalSpace(5),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
+            addHorizentalSpace(10),
+            Expanded(
+              flex: 2,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        color: themeColors.onPrimary,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.star_border_outlined,
-                            size: 17,
-                            color: Colors.white,
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: themeColors.onPrimary,
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          Text(
-                            " ${widget.rate} ",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.star_border_outlined,
+                                size: 17,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                " ${widget.rate} ",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        addHorizentalSpace(10),
+                        Text(
+                          widget.name,
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
                     ),
-                    addHorizentalSpace(10),
-                    Text(
-                      widget.name,
-                      style: theme.textTheme.titleMedium,
+                    addVerticalSpace(5),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.place,
+                          size: 20,
+                          color: themeColors.surface,
+                        ),
+                        Text(
+                          widget.country == "United Arab Emirates" ?
+                          "${widget.city}, U.A.E":
+                          "${widget.city}, ${widget.country}",
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                addVerticalSpace(5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.place,
-                      size: 20,
-                      color: themeColors.surface,
-                    ),
-                    Text(
-                      widget.country == "United Arab Emirates" ?
-                      "${widget.city}, U.A.E":
-                      "${widget.city}, ${widget.country}",
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
             GestureDetector(
+              child: Container(
+                height: 70,
+                width: 30,
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(20)
+                ),
+                child: Icon(
+                  Icons.delete_forever,
+                  color: Colors.white,
+                ),
+              ),
               onTap: (){
                 showDialog(
                   context: context,
@@ -194,19 +213,6 @@ class _BookedPackageBoxState extends State<BookedPackageBox> {
                   },
                 );
               },
-              child: Container(
-                height: 70,
-                width: 30,
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                child: Icon(
-                  Icons.delete_forever,
-                  color: Colors.white,
-                ),
-              ),
             ),
           ],
         ),
