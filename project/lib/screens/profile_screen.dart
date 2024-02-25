@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:project/screens/home_screen.dart';
+import '../components/profile/booked_packages_list.dart';
+import '../helping widgets/connection_alerts.dart';
 import '../helping widgets/loading_widget.dart';
 import '../helping widgets/sizedbox_widget.dart';
 import '../model/user.dart';
+import '../services/connectivity_services.dart';
 import '../services/database_services.dart';
 
 class MyProfileScreen extends StatefulWidget {
@@ -126,14 +129,19 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       ),
                     ),
                     IconButton(
-                        onPressed: () {
+                      onPressed: () async{
+                        final isConnected = await ConnectivityServices().getConnectivity();
+                        if (isConnected) {
                           showEditField(context, "username");
-                        },
-                        icon: Icon(
-                          Icons.create_outlined,
-                          size: 15,
-                          color: themeColors.surface,
-                        ),
+
+                        }else {
+                          NoConnectionAlert(context);
+                        }},
+                      icon: Icon(
+                        Icons.create_outlined,
+                        size: 15,
+                        color: themeColors.surface,
+                      ),
                     ),
                   ],
                 ),
@@ -152,9 +160,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       ),
                     ),
                     IconButton(
-                        onPressed: () {
-                          showEditField(context, "bio");
-                        },
+                        onPressed: () async{
+                          final isConnected = await ConnectivityServices().getConnectivity();
+                          if (isConnected) {
+                            showEditField(context, "bio");
+
+                          }else {
+                            NoConnectionAlert(context);
+                          }},
                         icon: Icon(
                           Icons.create_outlined,
                           size: 15,
@@ -175,6 +188,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   color: themeColors.onBackground,
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     addVerticalSpace(screenHeight * 0.01),
                     Text(
@@ -184,7 +198,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           letterSpacing: 2
                       ),
                     ),
-                    addVerticalSpace(screenHeight * 0.01),
+                    addVerticalSpace(10),
+                    SizedBox(
+                        height: screenHeight * 0.7,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: BookedpackagesList(),
+                        )
+                    ),
                   ],
                 ),
               ),

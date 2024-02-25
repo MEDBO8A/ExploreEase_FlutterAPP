@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project/helping%20widgets/sizedbox_widget.dart';
 import 'package:project/screens/package_screen.dart';
 
+import '../../helping widgets/connection_alerts.dart';
 import '../../helping widgets/loading_image.dart';
+import '../../services/connectivity_services.dart';
 
 class PopularPackageBox extends StatelessWidget {
   final String placeID;
@@ -32,7 +34,9 @@ class PopularPackageBox extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {
+        onTap: () async{
+      final isConnected = await ConnectivityServices().getConnectivity();
+      if (isConnected) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => MyPackageScreen(
@@ -48,6 +52,9 @@ class PopularPackageBox extends StatelessWidget {
             ),
           ),
         );
+      }else {
+        NoConnectionAlert(context);
+      }
       },
       child: Container(
         margin: const EdgeInsets.only(right: 15),

@@ -149,7 +149,7 @@ class _MyPackageScreenState extends State<MyPackageScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: bottomWidget(context,widget.price),
+      bottomNavigationBar: bottomWidget(context,widget.price, widget.placeID, widget.image),
     );
   }
 

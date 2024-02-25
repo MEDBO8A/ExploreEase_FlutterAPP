@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:project/helping%20widgets/alert_dialog.dart';
+import 'package:project/screens/package_book_screen.dart';
 
 import '../../../helping widgets/connection_alerts.dart';
+import '../../../model/user.dart';
 import '../../../services/connectivity_services.dart';
 
-Container bottomWidget(BuildContext context, dynamic price) {
+Container bottomWidget(BuildContext context, dynamic price, String placeID, String image) {
   final theme = Theme.of(context);
   final themeColors = Theme.of(context).colorScheme;
   final screenHeight = MediaQuery.of(context).size.height;
+
+  UserModel? currentUser = UserModel.current;
+
   return Container(
     height: screenHeight * 0.1,
     decoration: BoxDecoration(
@@ -38,13 +44,15 @@ Container bottomWidget(BuildContext context, dynamic price) {
           onTap: () {
             ConnectivityServices().getConnectivity().then((value) {
               if (value){
-                /*
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => MyBookPackage(),
-                ),
-              );
-               */
+                if (currentUser!.booked!.contains(placeID)){
+                  showErrorAlert(context, "You have already booked this package");
+                }else{
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MyBookingScreen(image: image, placeID: placeID),
+                    ),
+                  );
+                }
               }else{
                 NoConnectionAlert(context);
               }

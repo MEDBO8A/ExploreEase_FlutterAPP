@@ -127,8 +127,8 @@ class AuthServices {
             password: pass,
             profPic: imageUrl,
             bio: "bio...",
-            favorite: [""],
-            booked: [""],
+            favorite: [],
+            booked: [],
           );
 
           await DBServices().saveUser(user);

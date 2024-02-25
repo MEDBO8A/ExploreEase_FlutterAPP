@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MyMailTextField extends StatelessWidget {
+class MyFNameTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? error;
 
-  const MyMailTextField({
+  const MyFNameTextField({
     super.key,
     required this.controller, this.error,
   });
@@ -22,13 +22,13 @@ class MyMailTextField extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: themeColors.onBackground,
+        errorText: error,
         errorStyle: TextStyle(
           color: themeColors.error,
           fontSize: 15,
         ),
-        errorText: error,
-        hintText: " Email",
-        prefixIcon: Icon(Icons.email_rounded, color: themeColors.surface),
+        hintText: " First Name",
+        prefixIcon: Icon(Icons.person, color: themeColors.surface),
         hintStyle: TextStyle(
           letterSpacing: 1,
           color: themeColors.surface,
@@ -56,11 +56,11 @@ class MyMailTextField extends StatelessWidget {
 }
 
 
-class MyNameTextField extends StatelessWidget {
+class MyLNameTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? error;
 
-  const MyNameTextField({
+  const MyLNameTextField({
     super.key,
     required this.controller, this.error,
   });
@@ -83,7 +83,7 @@ class MyNameTextField extends StatelessWidget {
           color: themeColors.error,
           fontSize: 15,
         ),
-        hintText: " Username",
+        hintText: " Last Name",
         prefixIcon: Icon(Icons.person, color: themeColors.surface),
         hintStyle: TextStyle(
           letterSpacing: 1,
@@ -113,29 +113,20 @@ class MyNameTextField extends StatelessWidget {
 
 
 
-class MyPasswordTextField extends StatefulWidget {
+class MyNumTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? error;
 
-  const MyPasswordTextField({
+  const MyNumTextField({
     super.key,
-    required this.controller,
-    this.error,
+    required this.controller, this.error,
   });
-
-  @override
-  _MyPasswordTextFieldState createState() => _MyPasswordTextFieldState();
-}
-
-class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
-  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
     final themeColors = Theme.of(context).colorScheme;
     return TextFormField(
-      controller: widget.controller,
-      obscureText: !isVisible,
+      controller: controller,
       style: TextStyle(
         letterSpacing: 1,
         color: themeColors.surface,
@@ -144,13 +135,13 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: themeColors.onBackground,
-        errorText: widget.error,
+        errorText: error,
         errorStyle: TextStyle(
           color: themeColors.error,
           fontSize: 15,
         ),
-        hintText: " Password",
-        prefixIcon: Icon(Icons.lock, color: themeColors.surface),
+        hintText: " Phone Number",
+        prefixIcon: Icon(Icons.phone, color: themeColors.surface),
         hintStyle: TextStyle(
           letterSpacing: 1,
           color: themeColors.surface,
@@ -170,71 +161,6 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
             color: Theme.of(context).colorScheme.primary,
             style: BorderStyle.solid,
             width: 3,
-          ),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(
-            isVisible ? Icons.visibility : Icons.visibility_off,
-          ),
-          color: themeColors.surface,
-          onPressed: () {
-            setState(() {
-              isVisible = !isVisible;
-            });
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class MySearchTextField extends StatelessWidget {
-  final String? error;
-
-  const MySearchTextField({
-    super.key,
-    this.error,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final themeColors = Theme.of(context).colorScheme;
-    return TextFormField(
-      style: TextStyle(
-        letterSpacing: 1,
-        color: themeColors.surface,
-        fontSize: 18,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.zero,
-        filled: true,
-        fillColor: themeColors.onBackground,
-        errorStyle: TextStyle(
-          color: themeColors.error,
-          fontSize: 15,
-        ),
-        errorText: error,
-        hintText: "Search for a package here",
-        prefixIcon: Icon(Icons.search, color: themeColors.surface),
-        hintStyle: TextStyle(
-          letterSpacing: 1,
-          color: themeColors.surface,
-          fontSize: 18,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
-            style: BorderStyle.solid,
-            width: 2,
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
-            style: BorderStyle.solid,
-            width: 2,
           ),
         ),
       ),
